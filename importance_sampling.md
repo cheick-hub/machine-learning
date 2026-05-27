@@ -14,15 +14,15 @@ Then we correct the bias introduced by sampling from $q(x)$ using a weight.
 
 Suppose we want to compute an expectation:
 
-$$
+```math
 \mathbb{E}_{p}[f(x)]
-$$
+```
 
 This means:
 
-$$
+```math
 \mathbb{E}_{p}[f(x)] = \int f(x)p(x)dx
-$$
+```
 
 where:
 
@@ -32,15 +32,15 @@ where:
 
 In standard Monte Carlo, we would sample:
 
-$$
+```math
 x_1, x_2, ..., x_N \sim p(x)
-$$
+```
 
 and estimate:
 
-$$
+```math
 \mathbb{E}_{p}[f(x)] \approx \frac{1}{N}\sum_{i=1}^{N} f(x_i)
-$$
+```
 
 But sometimes sampling from $p(x)$ is difficult, inefficient, or produces too many samples that contribute very little.
 
@@ -50,9 +50,9 @@ But sometimes sampling from $p(x)$ is difficult, inefficient, or produces too ma
 
 Instead of sampling from $p(x)$, we sample from another distribution:
 
-$$
+```math
 x_1, x_2, ..., x_N \sim q(x)
-$$
+```
 
 where $q(x)$ is called the **proposal distribution** or **sampling distribution**.
 
@@ -60,13 +60,13 @@ However, if we sample from $q(x)$, we are no longer directly estimating the expe
 
 The correction weight is:
 
-$$
+```math
 w(x) = \frac{p(x)}{q(x)}
-$$
+```
 
 This gives the importance sampling identity:
 
-$$
+```math
 \mathbb{E}_{p}[f(x)]
 =
 \int f(x)p(x)dx
@@ -74,27 +74,27 @@ $$
 \int f(x)\frac{p(x)}{q(x)}q(x)dx
 =
 \mathbb{E}_{q}\left[f(x)\frac{p(x)}{q(x)}\right]
-$$
+```
 
 So the estimator becomes:
 
-$$
+```math
 \mathbb{E}_{p}[f(x)]
 \approx
 \frac{1}{N}\sum_{i=1}^{N} f(x_i)w(x_i)
-$$
+```
 
 where:
 
-$$
+```math
 x_i \sim q(x)
-$$
+```
 
 and:
 
-$$
+```math
 w(x_i)=\frac{p(x_i)}{q(x_i)}
-$$
+```
 
 ---
 
@@ -104,9 +104,9 @@ Importance sampling intentionally introduces a sampling bias by drawing samples 
 
 Then it removes that bias using the weight:
 
-$$
+```math
 \frac{p(x)}{q(x)}
-$$
+```
 
 The weight compares:
 
@@ -115,25 +115,25 @@ The weight compares:
 
 For a sampled point $x$:
 
-$$
+```math
 w(x)=\frac{\text{density under }p}{\text{density under }q}
-$$
+```
 
 ### Interpretation
 
 If:
 
-$$
+```math
 q(x) > p(x)
-$$
+```
 
 then $x$ is sampled too often by $q$, so its weight is small.
 
 If:
 
-$$
+```math
 q(x) < p(x)
-$$
+```
 
 then $x$ is sampled too rarely by $q$, so its weight is large.
 
@@ -149,21 +149,21 @@ You do **not** take one sample from $p$ and divide it by one sample from $q$.
 
 You do this:
 
-$$
+```math
 w(x)=\frac{p(x)}{q(x)}
-$$
+```
 
 For example, if the sampled value is:
 
-$$
+```math
 x=2
-$$
+```
 
 then the weight is:
 
-$$
+```math
 w(2)=\frac{p(2)}{q(2)}
-$$
+```
 
 So we evaluate:
 
@@ -178,39 +178,39 @@ and divide them.
 
 Suppose we want to estimate:
 
-$$
+```math
 \mathbb{E}_{p}[x^2]
-$$
+```
 
 where:
 
-$$
+```math
 p(x)=\mathcal{N}(0,1)
-$$
+```
 
 This means $p(x)$ is a standard normal distribution.
 
 The true value is:
 
-$$
+```math
 \mathbb{E}[x^2]=1
-$$
+```
 
 because the variance of a standard normal distribution is 1.
 
 Now suppose we choose a wider proposal distribution:
 
-$$
+```math
 q(x)=\mathcal{N}(0,2^2)
-$$
+```
 
 This distribution has more probability mass in the tails, so it samples larger values more often.
 
 For each sample $x_i \sim q(x)$, we compute:
 
-$$
+```math
 x_i^2 \frac{p(x_i)}{q(x_i)}
-$$
+```
 
 Then we average the weighted values.
 
@@ -220,15 +220,15 @@ Then we average the weighted values.
 
 Assume we sample from $q(x)$:
 
-$$
+```math
 x = [-2,\ 1.5,\ 0.3,\ 2.5]
-$$
+```
 
 For each sampled value, we compute:
 
-$$
+```math
 w(x)=\frac{p(x)}{q(x)}
-$$
+```
 
 | Sample $x$ | $x^2$ | Weight $p(x)/q(x)$ | Weighted contribution |
 |---:|---:|---:|---:|
@@ -239,11 +239,11 @@ $$
 
 The importance sampling estimate is:
 
-$$
+```math
 \frac{1.08 + 1.04 + 0.17 + 0.94}{4}
 =
 0.81
-$$
+```
 
 The true value is 1.
 
@@ -255,9 +255,9 @@ With more samples, the estimate should become more accurate, assuming $q(x)$ is 
 
 If we sampled directly from $p(x)$, we could estimate:
 
-$$
+```math
 \mathbb{E}_{p}[f(x)]
-$$
+```
 
 directly.
 
@@ -265,9 +265,9 @@ But since we sampled from $q(x)$, we need to correct each sample.
 
 The correction:
 
-$$
+```math
 \frac{p(x)}{q(x)}
-$$
+```
 
 answers the question:
 
@@ -283,21 +283,21 @@ So importance sampling can be understood as:
 
 Importance sampling requires that we can evaluate both distributions:
 
-$$
+```math
 p(x)
-$$
+```
 
 and:
 
-$$
+```math
 q(x)
-$$
+```
 
 or at least their ratio:
 
-$$
+```math
 \frac{p(x)}{q(x)}
-$$
+```
 
 We do not necessarily need to sample from $p(x)$, but we need to evaluate how likely a sample is under $p(x)$.
 
@@ -313,9 +313,9 @@ This is the key reason importance sampling is useful:
 
 Importance sampling only works correctly if:
 
-$$
+```math
 q(x) > 0 \quad \text{whenever} \quad p(x) > 0
-$$
+```
 
 This means that $q(x)$ must be able to sample all regions where $p(x)$ has probability mass.
 
@@ -348,21 +348,21 @@ In reinforcement learning, importance sampling is often used for **off-policy ev
 
 Suppose data was collected using one policy:
 
-$$
+```math
 \mu(a|s)
-$$
+```
 
 but we want to evaluate another policy:
 
-$$
+```math
 \pi(a|s)
-$$
+```
 
 The importance weight becomes:
 
-$$
+```math
 w = \frac{\pi(a|s)}{\mu(a|s)}
-$$
+```
 
 where:
 
@@ -383,17 +383,17 @@ Importance sampling is a way to estimate an expectation under a target distribut
 
 The key formula is:
 
-$$
+```math
 \mathbb{E}_{p}[f(x)]
 =
 \mathbb{E}_{q}\left[f(x)\frac{p(x)}{q(x)}\right]
-$$
+```
 
 The weight:
 
-$$
+```math
 \frac{p(x)}{q(x)}
-$$
+```
 
 corrects the bias introduced by sampling from $q(x)$.
 

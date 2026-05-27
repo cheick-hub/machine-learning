@@ -3,7 +3,9 @@
 ## 1. Context and the Emergence of PPO
 To resolve the catastrophic policy collapse and sample inefficiency inherent to Vanilla Policy Gradient (VPG), Trust Region Policy Optimization (TRPO) was introduced. TRPO enforces a mathematical constraint to ensure that the new policy $\pi_\theta$ does not deviate too far from the old policy $\pi_{\theta_{old}}$. It restricts the average Kullback-Leibler (KL) divergence between the two distributions:
 
-$$\mathbb{E} [KL(\pi_{\theta_{old}}(\cdot|s) \parallel \pi_\theta(\cdot|s))] \le \delta$$
+```math
+\mathbb{E} [KL(\pi_{\theta_{old}}(\cdot|s) \parallel \pi_\theta(\cdot|s))] \le \delta
+```
 
 While TRPO enforces stability, it relies on second-order optimization math. It approximates the constraint using the Fisher Information Matrix, which requires computing and inverting a massive matrix of second derivatives. This is computationally expensive, scales poorly with large neural networks, and is notoriously difficult to implement correctly.
 
@@ -18,7 +20,9 @@ PPO tracks the divergence of the updating policy by monitoring the probability r
 ### The Probability Ratio
 For any state-action pair, the probability ratio $r_t(\theta)$ is defined as:
 
-$$r_t(\theta) = \frac{\pi_\theta(a_t|s_t)}{\pi_{\theta_{old}}(a_t|s_t)}$$
+```math
+r_t(\theta) = \frac{\pi_\theta(a_t|s_t)}{\pi_{\theta_{old}}(a_t|s_t)}
+```
 
 * If $r_t(\theta) > 1$, the action $a_t$ is more likely under the current policy than the old policy.
 * If $r_t(\theta) < 1$, the action is less likely under the current policy.
@@ -29,7 +33,9 @@ Instead of using the raw total return $R(\tau)$, PPO incorporates an Advantage f
 
 The PPO objective function $L^{CLIP}(\theta)$ is written as:
 
-$$L^{CLIP}(\theta) = \hat{\mathbb{E}}_t \left[ \min\left(r_t(\theta) \hat{A}_t, \text{clip}(r_t(\theta), 1-\epsilon, 1+\epsilon) \hat{A}_t\right) \right]$$
+```math
+L^{CLIP}(\theta) = \hat{\mathbb{E}}_t \left[ \min\left(r_t(\theta) \hat{A}_t, \text{clip}(r_t(\theta), 1-\epsilon, 1+\epsilon) \hat{A}_t\right) \right]
+```
 
 Where $\epsilon$ is a hyperparameter determining the bounding threshold (typically set to $0.2$, allowing a maximum $20\%$ deviation from the old policy).
 

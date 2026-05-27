@@ -5,7 +5,9 @@ In Reinforcement Learning, the goal of an agent is to find an optimal policy $\p
 
 Our goal is to maximize the expected total reward over an entire trajectory (or episode), which we define as the objective function $J(\theta)$:
 
-$$J(\theta) = \mathbb{E}_{\tau \sim \pi_\theta} [R(\tau)]$$
+```math
+J(\theta) = \mathbb{E}_{\tau \sim \pi_\theta} [R(\tau)]
+```
 
 Where:
 * $\tau$ is a trajectory, represented as a sequence of states and actions: $\tau = (s_0, a_0, s_1, a_1, \dots, s_T)$.
@@ -14,7 +16,9 @@ Where:
 
 We can rewrite this expectation explicitly as an integral (or sum) over all possible trajectories:
 
-$$J(\theta) = \int P(\tau|\theta) R(\tau) d\tau$$
+```math
+J(\theta) = \int P(\tau|\theta) R(\tau) d\tau
+```
 
 ---
 
@@ -25,48 +29,68 @@ To maximize $J(\theta)$ using gradient ascent, we must compute the gradient of $
 ### Step A: Moving the Gradient Inside the Integral
 Using the Leibniz integral rule, we bring the gradient operator inside the integral:
 
-$$\nabla_\theta J(\theta) = \nabla_\theta \int P(\tau|\theta) R(\tau) d\tau = \int \nabla_\theta P(\tau|\theta) R(\tau) d\tau$$
+```math
+\nabla_\theta J(\theta) = \nabla_\theta \int P(\tau|\theta) R(\tau) d\tau = \int \nabla_\theta P(\tau|\theta) R(\tau) d\tau
+```
 
 > **Justification:** We do not differentiate $R(\tau)$ because the reward function is determined by the environment dynamics, not the policy parameters $\theta$. The environment acts as a black box; we do not possess a differentiable mathematical model of how world physics or game rules award points. We only control, and thus can only differentiate, the probability distribution $P(\tau|\theta)$ over the actions we choose.
 
 ### Step B: The Log-Derivative Trick (Likelihood Ratio)
 The expression $\int \nabla_\theta P(\tau|\theta) R(\tau) d\tau$ cannot be estimated easily because it is no longer an expectation (the probability density function $P(\tau|\theta)$ has been replaced by its gradient). To transform it back into an expectation, we use the calculus identity for the derivative of a logarithm, $\nabla_\theta \log x = \frac{\nabla_\theta x}{x}$, which we rearrange as:
 
-$$\nabla_\theta P(\tau|\theta) = P(\tau|\theta) \nabla_\theta \log P(\tau|\theta)$$
+```math
+\nabla_\theta P(\tau|\theta) = P(\tau|\theta) \nabla_\theta \log P(\tau|\theta)
+```
 
 Substituting this identity into our gradient equation yields:
 
-$$\nabla_\theta J(\theta) = \int P(\tau|\theta) \nabla_\theta \log P(\tau|\theta) R(\tau) d\tau$$
+```math
+\nabla_\theta J(\theta) = \int P(\tau|\theta) \nabla_\theta \log P(\tau|\theta) R(\tau) d\tau
+```
 
 Because this integral is weighted by $P(\tau|\theta)$, it can be written cleanly as an expectation:
 
-$$\nabla_\theta J(\theta) = \mathbb{E}_{\tau \sim \pi_\theta} [\nabla_\theta \log P(\tau|\theta) R(\tau)]$$
+```math
+\nabla_\theta J(\theta) = \mathbb{E}_{\tau \sim \pi_\theta} [\nabla_\theta \log P(\tau|\theta) R(\tau)]
+```
 
 > **Justification:** This structural shift allows us to use **Monte Carlo sampling**. Instead of calculating an impossible analytical integral over every single potential trajectory in the universe, we can simply run our current policy in the environment, collect a batch of sample trajectories, and calculate the empirical average of the term inside the brackets.
 
 ### Step C: Decomposing the Trajectory Probability
 The probability of a specific trajectory $\tau$ depends on the initial state distribution $\mu(s_0)$, the transition dynamics of the environment $P(s_{t+1}|s_t, a_t)$, and our policy $\pi_\theta(a_t|s_t)$:
 
-$$P(\tau|\theta) = \mu(s_0) \prod_{t=0}^{T} \pi_\theta(a_t|s_t) P(s_{t+1}|s_t, a_t)$$
+```math
+P(\tau|\theta) = \mu(s_0) \prod_{t=0}^{T} \pi_\theta(a_t|s_t) P(s_{t+1}|s_t, a_t)
+```
 
 When we apply the natural logarithm, the product expands into a sum of log-probabilities:
 
-$$\log P(\tau|\theta) = \log \mu(s_0) + \sum_{t=0}^T \log \pi_\theta(a_t|s_t) + \sum_{t=0}^T \log P(s_{t+1}|s_t, a_t)$$
+```math
+\log P(\tau|\theta) = \log \mu(s_0) + \sum_{t=0}^T \log \pi_\theta(a_t|s_t) + \sum_{t=0}^T \log P(s_{t+1}|s_t, a_t)
+```
 
 Now, we take the gradient with respect to $\theta$. Any term that does not contain $\theta$ treats it as a constant, meaning its derivative is zero:
 
-$$\nabla_\theta \log P(\tau|\theta) = \nabla_\theta \log \mu(s_0) + \sum_{t=0}^T \nabla_\theta \log \pi_\theta(a_t|s_t) + \sum_{t=0}^T \nabla_\theta \log P(s_{t+1}|s_t, a_t)$$
+```math
+\nabla_\theta \log P(\tau|\theta) = \nabla_\theta \log \mu(s_0) + \sum_{t=0}^T \nabla_\theta \log \pi_\theta(a_t|s_t) + \sum_{t=0}^T \nabla_\theta \log P(s_{t+1}|s_t, a_t)
+```
 
-$$\nabla_\theta \log P(\tau|\theta) = 0 + \sum_{t=0}^T \nabla_\theta \log \pi_\theta(a_t|s_t) + 0$$
+```math
+\nabla_\theta \log P(\tau|\theta) = 0 + \sum_{t=0}^T \nabla_\theta \log \pi_\theta(a_t|s_t) + 0
+```
 
-$$\nabla_\theta \log P(\tau|\theta) = \sum_{t=0}^T \nabla_\theta \log \pi_\theta(a_t|s_t)$$
+```math
+\nabla_\theta \log P(\tau|\theta) = \sum_{t=0}^T \nabla_\theta \log \pi_\theta(a_t|s_t)
+```
 
 > **Justification:** This step is fundamental to reinforcement learning. The initial state distribution $\mu(s_0)$ and the transition probabilities $P(s_{t+1}|s_t, a_t)$ completely drop out of the gradient calculation. This proves that Policy Gradient methods are **model-free**: we can optimize an agent without knowing or modeling the underlying transition physics of the environment.
 
 ### Step D: The Final Policy Gradient Formula
 Substituting the results of Step C back into Step B, we get the definitive Policy Gradient Theorem expression:
 
-$$\nabla_\theta J(\theta) = \mathbb{E}_{\tau \sim \pi_\theta} \left[ \sum_{t=0}^T \nabla_\theta \log \pi_\theta(a_t|s_t) R(\tau) \right]$$
+```math
+\nabla_\theta J(\theta) = \mathbb{E}_{\tau \sim \pi_\theta} \left[ \sum_{t=0}^T \nabla_\theta \log \pi_\theta(a_t|s_t) R(\tau) \right]
+```
 
 ---
 
