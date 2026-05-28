@@ -28,6 +28,9 @@ r_t(\theta) = \frac{\pi_\theta(a_t|s_t)}{\pi_{\theta_{old}}(a_t|s_t)}
 * If $r_t(\theta) < 1$, the action is less likely under the current policy.
 * If $r_t(\theta) = 1$, the current and old policies are identical for this action.
 
+$r_t$ acts like a weighting factor that measures how much the new policy differs from the old one for a given action. (Importance sampling, see point 3).
+It scales the policy update by increasing or decreasing the contribution of an action depending on how its probability changed between the two policies.
+
 ### The Clipped Surrogate Objective
 Instead of using the raw total return $R(\tau)$, PPO incorporates an Advantage function $\hat{A}_t$, which isolates whether an action performed better or worse than the baseline average for that state ($\hat{A}_t$ = Q(s,a) - V(s)). 
 
