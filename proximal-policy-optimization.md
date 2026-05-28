@@ -37,7 +37,7 @@ The PPO objective function $L^{CLIP}(\theta)$ is written as:
 L^{CLIP}(\theta) = \hat{\mathbb{E}}_t \left[ \min\left(r_t(\theta) \hat{A}_t, \text{clip}(r_t(\theta), 1-\epsilon, 1+\epsilon) \hat{A}_t\right) \right]
 ```
 
-Where $\epsilon$ is a hyperparameter determining the bounding threshold (typically set to $0.2$, allowing a maximum $20\%$ deviation from the old policy).
+Where $\epsilon$ is a hyperparameter determining the bounding threshold (typically set to $0.2$, allowing a maximum 20\% deviation from the old policy).
 
 The objective function uses a $\min$ operator applied to two separate internal components:
 1.  **The Unclipped Term:** $r_t(\theta) \hat{A}_t$
