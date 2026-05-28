@@ -75,7 +75,7 @@ The action taken resulted in a worse-than-average outcome. We want to decrease i
 | $\hat{A}_t > 0$ (Good Action) | $1.0 \le r_t \le 1+\epsilon$ | Unclipped ($r_t \hat{A}_t$) | **Active** (Increases probability) |
 | $\hat{A}_t > 0$ (Good Action) | $r_t > 1+\epsilon$ | Clipped ($(1+\epsilon) \hat{A}_t$) | **Zeroed** (Prevents over-confidence) |
 | $\hat{A}_t < 0$ (Bad Action) | $1-\epsilon \le r_t \le 1.0$ | Unclipped ($r_t \hat{A}_t$) | **Active** (Decreases probability) |
-| $\hat{A}_t < 0$ (Bad Action) | $r_t < 1-\epsilon$ | Unclipped ($r_t \hat{A}_t$) | **Active** (Allows continued reduction) |
+| $\hat{A}_t < 0$ (Bad Action) | $r_t < 1-\epsilon$ | Clipped ($r_t \hat{A}_t$) | **Zeroed**/**Satured** (Prevents excessive suppression) |
 
 ---
 
