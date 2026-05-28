@@ -29,7 +29,7 @@ r_t(\theta) = \frac{\pi_\theta(a_t|s_t)}{\pi_{\theta_{old}}(a_t|s_t)}
 * If $r_t(\theta) = 1$, the current and old policies are identical for this action.
 
 ### The Clipped Surrogate Objective
-Instead of using the raw total return $R(\tau)$, PPO incorporates an Advantage function $\hat{A}_t$, which isolates whether an action performed better or worse than the baseline average for that state ($\hat{A}_t = Q(s,a) - V(s)$). 
+Instead of using the raw total return $R(\tau)$, PPO incorporates an Advantage function $\hat{A}_t$, which isolates whether an action performed better or worse than the baseline average for that state ($ \hat{A}_t = Q(s,a) - V(s) $). 
 
 The PPO objective function $L^{CLIP}(\theta)$ is written as:
 
