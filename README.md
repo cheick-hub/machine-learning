@@ -34,5 +34,5 @@ Each note should be clear and self-contained:
 - Explain the intuition.
 - Define important terms.
 - Add formulas when they help.
-- Use fenced `math` blocks for display formulas so GitHub renders them correctly.
+- Use `$...$` for inline formulas and `$$...$$` for display formulas so VS Code Markdown preview renders them reliably.
 - Add examples when useful.
