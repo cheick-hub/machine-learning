@@ -6,15 +6,15 @@ Statistics studies how to learn about an unknown population from finite observat
 
 Let the dataset be:
 
-$$
+```math
 D = \{x_1, x_2, \ldots, x_n\}
-$$
+```
 
 where each observation is assumed to be sampled from an unknown distribution $P_X$:
 
-$$
+```math
 x_i \sim P_X
-$$
+```
 
 The true distribution $P_X$ is not directly available. Statistics gives us tools to estimate useful quantities from samples and to reason about how uncertain those estimates are.
 
@@ -28,9 +28,9 @@ A **population** is the complete set of possible observations we care about. A *
 
 Machine Learning almost never observes the full population. It observes a sample:
 
-$$
+```math
 D = \{x_1, \ldots, x_n\}, \qquad x_i \sim P_X
-$$
+```
 
 where $D$ is the training or evaluation dataset.
 
@@ -46,23 +46,23 @@ An **estimator** is a rule that uses data to estimate an unknown population quan
 
 For example, the population mean is:
 
-$$
+```math
 \mu = \mathbb{E}[X]
-$$
+```
 
 Since $\mu$ is unknown, we can estimate it with the sample mean:
 
-$$
+```math
 \hat{\mu} = \frac{1}{n}\sum_{i=1}^{n}x_i
-$$
+```
 
 The hat notation, as in $\hat{\mu}$, means "estimated from data."
 
 More generally, if $\theta$ is an unknown parameter, an estimator $\hat{\theta}$ is computed from the sample:
 
-$$
+```math
 \hat{\theta} = g(D)
-$$
+```
 
 where $g$ is some rule or algorithm.
 
@@ -78,25 +78,25 @@ An estimator can be evaluated by its **bias** and **variance**.
 
 Bias measures systematic error:
 
-$$
+```math
 \operatorname{Bias}(\hat{\theta}) =
 \mathbb{E}[\hat{\theta}] - \theta
-$$
+```
 
 If the bias is zero, the estimator is unbiased:
 
-$$
+```math
 \mathbb{E}[\hat{\theta}] = \theta
-$$
+```
 
 Variance measures how much the estimator changes from one sample to another:
 
-$$
+```math
 \operatorname{Var}(\hat{\theta}) =
 \mathbb{E}\left[
   \left(\hat{\theta} - \mathbb{E}[\hat{\theta}]\right)^2
 \right]
-$$
+```
 
 A good estimator should usually have both low bias and low variance, but there is often a tradeoff.
 
@@ -112,24 +112,24 @@ Maximum Likelihood Estimation, or MLE, estimates parameters by choosing the valu
 
 For parameters $\theta$ and dataset $D$:
 
-$$
+```math
 \hat{\theta} =
 \arg\max_{\theta} P(D \mid \theta)
-$$
+```
 
 If samples are independent and identically distributed, often written i.i.d., then:
 
-$$
+```math
 P(D \mid \theta) =
 \prod_{i=1}^{n} P(x_i \mid \theta)
-$$
+```
 
 In practice, we usually maximize the log-likelihood:
 
-$$
+```math
 \log P(D \mid \theta) =
 \sum_{i=1}^{n}\log P(x_i \mid \theta)
-$$
+```
 
 The log form is easier to optimize because it turns products into sums. It also avoids numerical underflow when multiplying many small probabilities.
 
@@ -143,11 +143,11 @@ The log form is easier to optimize because it turns products into sums. It also 
 
 In Machine Learning, the true objective is usually the **expected risk**:
 
-$$
+```math
 R(f) =
 \mathbb{E}_{(X,Y)\sim P_{X,Y}}
 \left[\ell(f(X), Y)\right]
-$$
+```
 
 where:
 
@@ -157,10 +157,10 @@ where:
 
 Expected risk is the average loss over the real data-generating distribution. Since $P_{X,Y}$ is unknown, we approximate it with **empirical risk**:
 
-$$
+```math
 \hat{R}(f) =
 \frac{1}{n}\sum_{i=1}^{n}\ell(f(x_i), y_i)
-$$
+```
 
 This is the average loss on the observed dataset.
 
@@ -176,11 +176,11 @@ A **confidence interval** quantifies uncertainty around an estimate.
 
 A common approximate confidence interval for an estimate $\hat{\theta}$ is:
 
-$$
+```math
 \hat{\theta}
 \pm
 z_{1-\alpha/2}\frac{\sigma}{\sqrt{n}}
-$$
+```
 
 where:
 
@@ -192,9 +192,9 @@ where:
 
 For a 95% confidence interval, $\alpha = 0.05$, so:
 
-$$
+```math
 z_{1-\alpha/2} = z_{0.975} \approx 1.96
-$$
+```
 
 The interval usually shrinks as $n$ increases because the standard error term $\sigma / \sqrt{n}$ becomes smaller.
 
@@ -215,13 +215,13 @@ A typical setup defines:
 
 For example, to compare the mean performance of two systems:
 
-$$
+```math
 H_0: \mu_A = \mu_B
-$$
+```
 
-$$
+```math
 H_1: \mu_A \neq \mu_B
-$$
+```
 
 The test asks whether the observed difference would be surprising if $H_0$ were true.
 
@@ -243,11 +243,11 @@ They answer the question:
 
 A central example is Hoeffding's inequality. For independent bounded variables, for example values in $[0, 1]$:
 
-$$
+```math
 P\left(|\hat{\mu} - \mu| \geq \epsilon\right)
 \leq
 2e^{-2n\epsilon^2}
-$$
+```
 
 where:
 
@@ -268,7 +268,7 @@ This inequality shows that the probability of a large deviation decreases expone
 
 The main statistical workflow in ML is:
 
-$$
+```math
 \text{unknown population}
 \rightarrow
 \text{finite sample}
@@ -278,7 +278,7 @@ $$
 \text{uncertainty about the estimate}
 \rightarrow
 \text{generalization decision}
-$$
+```
 
 Statistics explains this workflow:
 
