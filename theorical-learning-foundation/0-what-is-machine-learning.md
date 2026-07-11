@@ -1,4 +1,4 @@
-# 0. What Is Machine Learning?
+# What Is Machine Learning?
 
 ## 1. The Classical Programming Paradigm
 
@@ -95,13 +95,9 @@ Machine Learning learns from data, but data is never the full reality. It is a f
 
 This is why probability and statistics are foundational.
 
-Probability helps us describe the uncertain process that could generate the data:
+Probability helps us describe the uncertain process that could generate the data
 
-> Probability describes the uncertain process that could generate the data.
-
-Statistics helps us learn about that process from observed samples:
-
-> Statistics uses observed samples to estimate unknown properties of that process while accounting for uncertainty.
+Statistics helps us learn about that process from observed samples
 
 Together:
 
