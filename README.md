@@ -18,14 +18,6 @@ The notes can cover any area of machine learning, including:
 - Model evaluation
 - Practical ML workflows
 
-## Current Notes
-
-| Note | File |
-| --- | --- |
-| Importance Sampling | [importance_sampling.md](importance_sampling.md) |
-| Policy Gradient | [policy-gradient.md](policy-gradient.md) |
-| Proximal Policy Optimization | [proximal-policy-optimization.md](proximal-policy-optimization.md) |
-
 ## Writing Notes
 
 Each note should be clear and self-contained:
