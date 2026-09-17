@@ -3,11 +3,12 @@
 ## Key Takeaways
 
 - A **partial derivative** measures how a multivariable function changes when one variable changes and the others are held fixed.
-- The **gradient** collects all partial derivatives into one vector.
-- A **directional derivative** measures how fast a function changes when moving in an arbitrary direction.
-- The gradient points in the direction of **steepest local increase**.
+- The **gradient** collects all partial derivatives into a vector and gives the local direction of steepest increase.
+- A **directional derivative** measures how fast a function changes along an arbitrary direction.
+- The **chain rule** explains how derivatives propagate through composed functions and is the mathematical basis of backpropagation.
+- A **Jacobian matrix** generalizes the derivative to vector-valued functions.
+- A **Hessian matrix** contains second-order partial derivatives and describes local curvature.
 - The negative gradient points in the direction of **steepest local decrease**.
-- Gradient Descent follows this local geometry by repeatedly moving opposite to the gradient.
 
 ---
 
@@ -29,7 +30,21 @@ For parameter \(\theta_j\):
 
 This quantity is the local slope of \(J\) along the \(\theta_j\) coordinate axis.
 
-**Illustration:** If \(J\) is a loss function, \(\frac{\partial J}{\partial \theta_j}\) tells us how sensitive the loss is to a small change in parameter \(\theta_j\).
+If \(J\) is a loss function, then:
+
+```math
+\frac{\partial J}{\partial \theta_j}>0
+```
+
+means that increasing \(\theta_j\) locally increases the loss, while:
+
+```math
+\frac{\partial J}{\partial \theta_j}<0
+```
+
+means that increasing \(\theta_j\) locally decreases it.
+
+**Illustration:** A partial derivative tells us how sensitive the loss is to one parameter while the others remain unchanged.
 
 ---
 
@@ -62,9 +77,53 @@ For a function of two parameters:
 The gradient contains both:
 
 - a **direction**, indicating how the function changes most rapidly;
-- a **magnitude**, indicating how steep that change is locally.
+- a **magnitude**, indicating how steep that local change is.
 
-**Illustration:** A large gradient norm means the loss surface is locally steep, while a small gradient norm means it is locally flat.
+The gradient norm is:
+
+```math
+\|\nabla J(\theta)\|_2
+```
+
+A large norm indicates a locally steep region, while a small norm indicates a flatter region.
+
+**Illustration:** In optimization, the gradient summarizes the local effect of changing all model parameters at once.
+
+### 2.1 Geometric Interpretation
+
+For a function of two variables:
+
+```math
+J(\theta_1,\theta_2)
+```
+
+we can imagine \(J\) as a surface above the parameter plane \((\theta_1,\theta_2)\).
+
+Curves of constant function value are called **level curves** or **contours**:
+
+```math
+J(\theta_1,\theta_2)=c
+```
+
+The gradient is perpendicular to the level curve passing through the current point.
+
+This is important because moving along a level curve does not change \(J\), while moving perpendicular to it produces the strongest local change.
+
+Therefore:
+
+```math
+\nabla J(\theta)
+```
+
+points toward increasing values of the function, while:
+
+```math
+-\nabla J(\theta)
+```
+
+points toward decreasing values.
+
+**Illustration:** On a topographic map, contour lines represent equal altitude and the gradient points directly uphill, perpendicular to those contours.
 
 ---
 
@@ -110,17 +169,7 @@ means the function is locally flat in that direction.
 
 **Illustration:** The directional derivative answers: "If I move in this particular direction, how quickly will the loss change?"
 
----
-
-## 4. Directional Derivative as a Dot Product
-
-The directional derivative is a dot product:
-
-```math
-D_uJ(\theta)
-=
-\nabla J(\theta)^\top u
-```
+### 3.1 Directional Derivative as a Dot Product
 
 Using the geometric definition of the dot product:
 
@@ -146,11 +195,177 @@ D_uJ(\theta)
 \|\nabla J(\theta)\|_2\cos\phi
 ```
 
-At a fixed point \(\theta\), the gradient magnitude is fixed. Therefore, the directional derivative only depends on the alignment between \(u\) and the gradient.
+At a fixed point \(\theta\), the gradient magnitude is fixed. The directional derivative therefore depends on the alignment between \(u\) and the gradient.
 
 ---
 
-## 5. Why the Gradient Points in the Direction of Steepest Increase
+## 4. Chain Rule
+
+The **chain rule** differentiates composed functions.
+
+Suppose:
+
+```math
+J = f(z)
+```
+
+and:
+
+```math
+z=g(\theta)
+```
+
+Then:
+
+```math
+\frac{dJ}{d\theta}
+=
+\frac{dJ}{dz}
+\frac{dz}{d\theta}
+```
+
+For multivariable functions, the same principle applies through partial derivatives.
+
+If:
+
+```math
+J=f(z_1,z_2,\dots,z_m)
+```
+
+and each \(z_i\) depends on \(\theta\), then:
+
+```math
+\frac{\partial J}{\partial \theta}
+=
+\sum_{i=1}^{m}
+\frac{\partial J}{\partial z_i}
+\frac{\partial z_i}{\partial \theta}
+```
+
+The chain rule is fundamental in Machine Learning because neural networks are compositions of many functions.
+
+Backpropagation repeatedly applies the chain rule from the output layer back toward earlier parameters.
+
+**Illustration:** If a parameter influences the loss through several intermediate computations, the chain rule multiplies the local derivatives along that computational path.
+
+---
+
+## 5. Jacobian Matrix
+
+The **Jacobian** generalizes derivatives to vector-valued functions.
+
+Consider:
+
+```math
+f:\mathbb{R}^n\rightarrow\mathbb{R}^m
+```
+
+with:
+
+```math
+f(x)
+=
+\begin{bmatrix}
+f_1(x)\\
+f_2(x)\\
+\vdots\\
+f_m(x)
+\end{bmatrix}
+```
+
+The Jacobian matrix is:
+
+```math
+J_f(x)
+=
+\begin{bmatrix}
+\frac{\partial f_1}{\partial x_1} & \cdots & \frac{\partial f_1}{\partial x_n}\\
+\vdots & \ddots & \vdots\\
+\frac{\partial f_m}{\partial x_1} & \cdots & \frac{\partial f_m}{\partial x_n}
+\end{bmatrix}
+```
+
+Each row describes how one output component changes with respect to all input components.
+
+If the output is scalar, \(m=1\), the Jacobian reduces to the gradient up to row/column convention.
+
+The Jacobian appears naturally in the multivariable chain rule. If:
+
+```math
+y=f(z),\qquad z=g(x)
+```
+
+then:
+
+```math
+J_{f\circ g}(x)
+=
+J_f(g(x))J_g(x)
+```
+
+**Illustration:** In a neural-network layer, the Jacobian describes how changes in the input vector affect every component of the output vector.
+
+---
+
+## 6. Hessian Matrix
+
+The **Hessian** contains all second-order partial derivatives of a scalar-valued function.
+
+For:
+
+```math
+J:\mathbb{R}^d\rightarrow\mathbb{R}
+```
+
+the Hessian is:
+
+```math
+H_J(\theta)
+=
+\nabla^2J(\theta)
+=
+\begin{bmatrix}
+\frac{\partial^2J}{\partial\theta_1^2} & \cdots & \frac{\partial^2J}{\partial\theta_1\partial\theta_d}\\
+\vdots & \ddots & \vdots\\
+\frac{\partial^2J}{\partial\theta_d\partial\theta_1} & \cdots & \frac{\partial^2J}{\partial\theta_d^2}
+\end{bmatrix}
+```
+
+While the gradient describes **slope**, the Hessian describes **curvature**.
+
+Near a point \(\theta\):
+
+- positive curvature means the surface bends upward;
+- negative curvature means it bends downward;
+- mixed curvature indicates a saddle-like geometry.
+
+At a stationary point where:
+
+```math
+\nabla J(\theta)=0
+```
+
+the Hessian helps classify the point:
+
+- positive definite Hessian: local minimum;
+- negative definite Hessian: local maximum;
+- indefinite Hessian: saddle point.
+
+Second-order optimization methods, such as Newton's method, explicitly use curvature information from the Hessian.
+
+**Illustration:** The gradient tells us which way the loss slopes, while the Hessian tells us how that slope itself changes nearby.
+
+---
+
+## 7. Why the Gradient Points in the Direction of Steepest Increase
+
+For a unit direction \(u\):
+
+```math
+D_uJ(\theta)
+=
+\|\nabla J(\theta)\|_2\cos\phi
+```
 
 For any angle \(\phi\):
 
@@ -208,9 +423,9 @@ is the maximum local rate of increase.
 
 ---
 
-## 6. Why the Negative Gradient Is a Descent Direction
+## 8. Why the Negative Gradient Is a Descent Direction
 
-If the gradient points in the direction of maximum increase, the opposite direction should produce the maximum local decrease.
+If the gradient points in the direction of maximum increase, the opposite direction produces the maximum local decrease.
 
 Choose the unit direction:
 
@@ -261,13 +476,13 @@ D_uJ(\theta)<0
 
 so moving opposite to the gradient locally decreases the function.
 
-Without normalizing the direction, we can choose:
+Without normalizing the direction, choose:
 
 ```math
 d=-\nabla J(\theta)
 ```
 
-and obtain:
+Then:
 
 ```math
 D_dJ(\theta)
@@ -288,7 +503,7 @@ Therefore:
 
 ---
 
-## 7. Connection to Gradient Descent
+## 9. Connection to Gradient Descent
 
 Gradient Descent uses the negative gradient to update the parameters:
 
@@ -306,20 +521,18 @@ The gradient determines the local descent direction, while the learning rate det
 
 The descent guarantee is local: a sufficiently small step decreases the objective, but an excessively large step can overshoot and increase the loss.
 
-The geometric chain is:
+The conceptual chain is:
 
 ```text
 Partial derivatives
         ↓
 Gradient
         ↓
-Directional derivative
+Directional derivatives
         ↓
-Steepest local increase
-        ↓
-Negative gradient
-        ↓
-Steepest local decrease
+Steepest local increase/decrease
         ↓
 Gradient Descent
 ```
+
+The chain rule and Jacobians explain how gradients propagate through composed vector-valued computations, while the Hessian adds second-order curvature information.
