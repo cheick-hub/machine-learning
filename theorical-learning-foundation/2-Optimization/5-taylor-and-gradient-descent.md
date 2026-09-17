@@ -165,23 +165,30 @@ then sufficiently small movement along \(u\) decreases the objective locally.
 
 ## 4. Deriving the Gradient Descent Direction
 
-From the previous note, the negative gradient is the direction of steepest local decrease.
+From `4-gradients-and-directional-derivatives.md`, we already established that:
 
-Choose:
+```math
+-\nabla J(\theta)
+```
+
+is the direction of steepest local decrease.
+
+So this section does **not** re-derive which direction is best. Instead, Taylor approximation explains why taking a sufficiently small step in that already-established direction decreases the objective locally.
+
+We therefore choose:
 
 ```math
 \Delta\theta
 =
--\eta\nabla J(\theta)
+\eta\left(-\nabla J(\theta)\right)
+=
+-\eta\nabla J(\theta),
 ```
 
 where:
 
-```math
-\eta>0
-```
-
-is the step size.
+- \(-\nabla J(\theta)\) determines the **descent direction**;
+- \(\eta>0\) determines the **step size**.
 
 Substitute this into the first-order Taylor approximation:
 
@@ -245,9 +252,14 @@ the first-order model predicts a decrease whenever:
 \nabla J(\theta)\neq0.
 ```
 
-This gives the basic idea behind Gradient Descent.
+So the two results have different roles:
 
-**Illustration:** The negative gradient is chosen because it makes the first-order Taylor approximation decrease as much as possible for a fixed small step.
+```text
+Directional derivatives tell us where to move.
+Taylor approximation explains why a sufficiently small step there reduces J.
+```
+
+**Illustration:** The negative gradient selects the downhill direction; Taylor approximation explains the local effect of stepping in that direction.
 
 ---
 
@@ -508,69 +520,3 @@ Optimization may also stop after a predefined computational budget.
 A small gradient does not automatically imply a minimum; it may also indicate a maximum or saddle point.
 
 **Illustration:** Stopping criteria detect when further optimization is unlikely to produce meaningful progress.
-
----
-
-## 12. Conceptual Summary
-
-The first-order Taylor approximation gives:
-
-```math
-J(\theta+\Delta\theta)
-\approx
-J(\theta)
-+
-\nabla J(\theta)^\top\Delta\theta.
-```
-
-Choosing:
-
-```math
-\Delta\theta
-=
--\eta\nabla J(\theta)
-```
-
-gives:
-
-```math
-J(\theta-\eta\nabla J(\theta))
-\approx
-J(\theta)
--
-\eta\|\nabla J(\theta)\|_2^2.
-```
-
-This explains the central logic of Gradient Descent:
-
-```text
-Gradient
-   ↓
-local linear approximation
-   ↓
-negative gradient gives local decrease
-   ↓
-choose a step size
-   ↓
-update parameters
-   ↓
-recompute the gradient
-   ↓
-repeat
-```
-
-The important distinction is:
-
-```math
-\boxed{
-\text{Gradient determines direction, learning rate determines distance.}
-}
-```
-
-And the key limitation is:
-
-```math
-\boxed{
-\text{The Taylor argument is local, so the step must remain small enough for the approximation to be useful.}
-}
-```
