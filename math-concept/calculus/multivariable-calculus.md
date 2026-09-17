@@ -536,3 +536,247 @@ Gradient Descent
 ```
 
 The chain rule and Jacobians explain how gradients propagate through composed vector-valued computations, while the Hessian adds second-order curvature information.
+
+---
+
+## 10. Worked Example — Directional Derivative and Steepest Direction
+
+Suppose at the current parameter point \(\theta\), the gradient of the loss is:
+
+```math
+\nabla J(\theta)=
+\begin{bmatrix}
+3\\
+4
+\end{bmatrix}
+```
+
+Its Euclidean norm is:
+
+```math
+\|\nabla J(\theta)\|_2
+=
+\sqrt{3^2+4^2}
+=5
+```
+
+The claim is that the **largest possible directional derivative is 5**, and it occurs when we move exactly in the gradient direction.
+
+### 10.1 First Direction — Move Horizontally
+
+Choose the unit direction:
+
+```math
+u=
+\begin{bmatrix}
+1\\
+0
+\end{bmatrix}
+```
+
+The directional derivative is:
+
+```math
+D_uJ(\theta)
+=
+\nabla J(\theta)^\top u
+```
+
+Therefore:
+
+```math
+D_uJ(\theta)
+=
+\begin{bmatrix}
+3 & 4
+\end{bmatrix}
+\begin{bmatrix}
+1\\
+0
+\end{bmatrix}
+=3
+```
+
+So moving horizontally gives a local rate of increase of **3**.
+
+Geometrically:
+
+```text
+             gradient (3,4)
+                 ↗
+               /
+             /
+           /  φ
+─────────→
+ u = (1,0)
+
+Directional derivative = 3
+```
+
+The angle \(\phi\) satisfies:
+
+```math
+\cos\phi
+=
+\frac{3}{5}
+```
+
+Therefore:
+
+```math
+D_uJ
+=
+\|\nabla J\|_2\cos\phi
+=
+5\frac{3}{5}
+=3
+```
+
+---
+
+### 10.2 Move Exactly in the Gradient Direction
+
+The gradient itself:
+
+```math
+\begin{bmatrix}
+3\\
+4
+\end{bmatrix}
+```
+
+is not a unit vector because its length is 5.
+
+Normalize it:
+
+```math
+u
+=
+\frac{\nabla J}{\|\nabla J\|}
+=
+\frac{1}{5}
+\begin{bmatrix}
+3\\
+4
+\end{bmatrix}
+=
+\begin{bmatrix}
+0.6\\
+0.8
+\end{bmatrix}
+```
+
+Its length is:
+
+```math
+\sqrt{0.6^2+0.8^2}
+=
+\sqrt{0.36+0.64}
+=1
+```
+
+Now \(u\) and the gradient point in exactly the same direction:
+
+```text
+              ∇J = (3,4)
+             ↗
+            /
+           /
+          ↗ u = (0.6,0.8)
+         /
+        ● θ
+
+        φ = 0°
+```
+
+Therefore:
+
+```math
+\cos(0)=1
+```
+
+and:
+
+```math
+D_uJ
+=
+\|\nabla J\|\cos(0)
+=
+5(1)
+=
+\boxed{5}
+```
+
+The same result follows directly from the dot product:
+
+```math
+D_uJ
+=
+\begin{bmatrix}
+3 & 4
+\end{bmatrix}
+\begin{bmatrix}
+0.6\\
+0.8
+\end{bmatrix}
+```
+
+```math
+=3(0.6)+4(0.8)
+=1.8+3.2
+=
+\boxed{5}
+```
+
+---
+
+### 10.3 Compare Several Directions
+
+| Unit direction \(u\) | Relation to gradient | \(D_uJ\) |
+|---|---|---:|
+| \((1,0)\) | Somewhat aligned | \(3\) |
+| \((0,1)\) | Somewhat aligned | \(4\) |
+| \((0.6,0.8)\) | Exactly aligned | **\(5\)** |
+| \((-0.8,0.6)\) | Perpendicular | \(0\) |
+| \((-0.6,-0.8)\) | Exactly opposite | **\(-5\)** |
+
+For every unit direction:
+
+```math
+D_uJ
+=
+\underbrace{5}_{\|\nabla J\|}
+\underbrace{\cos\phi}_{[-1,1]}
+```
+
+so:
+
+```math
+-5\leq D_uJ\leq5
+```
+
+The maximum occurs when:
+
+```math
+\phi=0^\circ
+```
+
+and therefore:
+
+```math
+\boxed{\max_{\|u\|=1}D_uJ=5}
+```
+
+This concretely demonstrates that the unit vector aligned with the gradient gives the maximum possible directional derivative.
+
+Therefore:
+
+```math
+\boxed{\nabla J\text{ points in the direction of steepest local increase}}
+```
+
+and immediately:
+
+```math
+\boxed{-\nabla J\text{ points in the direction of steepest local decrease}}
+```
