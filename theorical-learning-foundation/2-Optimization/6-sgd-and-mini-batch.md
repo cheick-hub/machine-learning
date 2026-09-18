@@ -282,15 +282,15 @@ but:
 
 ## 5. Gradient Noise and Variance
 
-Because:
+Because a stochastic gradient is computed from only part of the dataset, it generally differs from the full empirical-risk gradient:
 
 ```math
 g_t
 \neq
-\nabla \hat R_n(\theta_t)
+\nabla \hat R_n(\theta_t).
 ```
 
-in general, we can write:
+We can write this difference as:
 
 ```math
 g_t
@@ -300,7 +300,17 @@ g_t
 \varepsilon_t,
 ```
 
-where (arepsilon_t) represents gradient noise.
+where:
+
+```math
+\varepsilon_t
+=
+g_t
+-
+\nabla \hat R_n(\theta_t)
+```
+
+is the **gradient noise**.
 
 Under unbiased sampling:
 
@@ -308,7 +318,9 @@ Under unbiased sampling:
 \mathbb{E}[\varepsilon_t\mid\theta_t]=0.
 ```
 
-However, the noise may have nonzero variance:
+This means the noise has no systematic direction: if we repeatedly sampled stochastic gradients at the same parameter point and averaged them, their average would approach the full-dataset gradient.
+
+However, an individual stochastic gradient can still differ from the full gradient. This local variability is measured by:
 
 ```math
 \mathbb{E}
@@ -319,12 +331,29 @@ However, the noise may have nonzero variance:
 >0.
 ```
 
-This means SGD updates fluctuate around the direction of the full gradient.
+Here, `\|\varepsilon_t\|_2^2` is the squared distance between the stochastic gradient and the full gradient. A positive expected value means the stochastic gradients still fluctuate around the full gradient even though their average is correct.
 
-The noise can make the optimization path less smooth, but it also allows many inexpensive updates.
+So the key distinction is:
 
-**Illustration:** SGD does not descend along a perfectly smooth path; it moves downhill while repeatedly wobbling around the full-gradient direction.
+```math
+\boxed{
+\mathbb{E}[\varepsilon_t\mid\theta_t]=0
+\quad\Rightarrow\quad
+\text{no systematic error}
+}
+```
 
+while:
+
+```math
+\boxed{
+\mathbb{E}[\|\varepsilon_t\|_2^2\mid\theta_t]>0
+\quad\Rightarrow\quad
+\text{local variance remains}
+}
+```
+
+**Illustration:** SGD is unbiased because its average direction matches the full gradient, but it is noisy because each individual update can still deviate from that direction.
 ---
 
 ## 6. Mini-Batch Gradient Descent
@@ -392,181 +421,6 @@ we recover full-batch Gradient Descent.
 
 ---
 
-## 7. Batch Size and Gradient Variance
+## 7. Practical Essentials
 
-The mini-batch gradient averages several individual gradients.
-
-Averaging reduces random variation.
-
-Under approximately independent sampling, gradient variance decreases roughly as batch size increases:
-
-```math
-\operatorname{Var}(g_t)
-\propto
-\frac{1}{b}.
-```
-
-This gives the basic trade-off:
-
-```math
-\boxed{
-\text{smaller batch}
-\Rightarrow
-\text{cheaper but noisier gradient}
-}
-```
-
-and:
-
-```math
-\boxed{
-\text{larger batch}
-\Rightarrow
-\text{more expensive but more stable gradient}
-}
-```
-
-A larger batch does not automatically mean faster optimization in wall-clock time because each update requires more computation.
-
-**Illustration:** Increasing batch size makes each gradient estimate more reliable, but each estimate costs more to compute.
-
----
-
-## 8. Epochs, Batches, and Iterations
-
-These terms describe different parts of the training process.
-
-### Epoch
-
-An **epoch** is one complete pass through the training dataset.
-
-If the dataset contains (n) examples, one epoch processes all (n) examples once.
-
-### Batch
-
-A **batch** is the subset of examples used to compute one gradient estimate.
-
-If batch size is (b), each batch contains (b) examples.
-
-### Iteration
-
-An **iteration** is one parameter update.
-
-With mini-batch training, the approximate number of iterations per epoch is:
-
-```math
-\frac{n}{b}.
-```
-
-For example, reducing the batch size increases the number of parameter updates per epoch.
-
-**Illustration:** An epoch measures dataset coverage, while an iteration measures how many optimization updates have occurred.
-
----
-
-## 9. Shuffling the Dataset
-
-In practice, training examples are commonly shuffled before each epoch.
-
-The dataset is then divided into mini-batches.
-
-This reduces systematic ordering effects.
-
-Without shuffling, examples with similar structure may appear repeatedly in the same sequence, producing correlated updates.
-
-A typical training cycle is:
-
-```text
-shuffle dataset
-      ↓
-split into mini-batches
-      ↓
-compute mini-batch gradient
-      ↓
-update parameters
-      ↓
-continue until all batches are processed
-      ↓
-start next epoch
-```
-
-Shuffling does not change the empirical objective itself; it changes the sequence of gradient estimates used during optimization.
-
-**Illustration:** Shuffling prevents the optimizer from repeatedly seeing training examples in the same potentially biased order.
-
----
-
-## 10. Full-Batch GD vs SGD vs Mini-Batch SGD
-
-| Method | Examples per update | Gradient quality | Cost per update | Update behavior |
-| --- | ---: | --- | --- | --- |
-| Full-batch GD | (n) | Exact empirical gradient | High | Stable |
-| SGD | (1) | Very noisy estimate | Very low | Highly stochastic |
-| Mini-batch SGD | (b) | Lower-noise estimate | Moderate | Stochastic but more stable |
-
-The methods optimize the same empirical objective but use different approximations to its gradient.
-
-The main difference is not the objective function.
-
-It is how much data is used to estimate the gradient before each update.
-
-**Illustration:** Full-batch, stochastic, and mini-batch methods differ mainly in how accurately and expensively they estimate the same underlying gradient.
-
----
-
-## 11. Why Mini-Batch SGD Is Common in Practice
-
-Mini-batch SGD provides a useful compromise between computational efficiency and gradient stability.
-
-It allows:
-
-- more frequent updates than full-batch Gradient Descent;
-- lower gradient variance than single-example SGD;
-- efficient vectorized computation;
-- effective use of parallel hardware such as GPUs.
-
-The core update remains:
-
-```math
-\theta_{t+1}
-=
-\theta_t
--
-\eta g_t,
-```
-
-but now (g_t) is a mini-batch estimate of the full gradient.
-
-The conceptual progression is:
-
-```text
-Full empirical gradient
-        ↓
-expensive exact update
-        ↓
-stochastic gradient estimate
-        ↓
-cheap but noisy update
-        ↓
-mini-batch averaging
-        ↓
-balance between cost and stability
-```
-
-The central theoretical property is:
-
-```math
-\boxed{
-\mathbb{E}[g_t\mid\theta_t]
-=
-\nabla \hat R_n(\theta_t)
-}
-```
-
-while the central practical trade-off is:
-
-```math
-\boxed{
-\text{batch size controls the balance between gradient noise and computation.}
-}
-```
+Batch size controls the trade-off between computation and noise: smaller batches are cheaper but produce noisier gradients, while larger batches are more stable but cost more per update. An **iteration** is one parameter update, an **epoch** is one complete pass through the dataset, and training data is usually shuffled before each epoch to avoid systematic ordering effects. Full-batch GD uses all (n) examples, SGD uses one example, and mini-batch SGD uses (b) examples; mini-batches are the practical default because they combine reasonably stable gradient estimates with efficient vectorized computation on modern hardware.
