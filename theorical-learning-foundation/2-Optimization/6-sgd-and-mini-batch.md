@@ -149,7 +149,25 @@ Then every example has probability:
 P(i_t=i)=\frac{1}{n}.
 ```
 
-The expected stochastic gradient is:
+### Expectation
+
+The **expectation** of a random variable is its probability-weighted average value:
+
+```math
+\mathbb{E}[X]
+=
+\sum_x x\,P(X=x).
+```
+
+For the stochastic gradient:
+
+```math
+g_t
+=
+\nabla \ell_{i_t}(\theta_t),
+```
+
+its conditional expectation is:
 
 ```math
 \mathbb{E}[g_t\mid\theta_t]
@@ -171,7 +189,7 @@ Because sampling is uniform:
 \nabla \ell_i(\theta_t).
 ```
 
-Therefore:
+But this is exactly the full empirical-risk gradient:
 
 ```math
 \boxed{
@@ -181,14 +199,85 @@ Therefore:
 }
 ```
 
-So the stochastic gradient is an **unbiased estimator** of the full gradient.
+### Unbiased Estimator
 
-This does not mean every stochastic gradient equals the full gradient.
+An estimator is **unbiased** when its expected value equals the quantity it is trying to estimate:
 
-It means that if we repeatedly sampled gradients at the same parameter point and averaged them, the average would equal the full gradient.
+```math
+\mathbb{E}[\hat q]=q.
+```
+
+Therefore, (g_t) is an unbiased estimator of the full gradient.
+
+This does **not** mean:
+
+```math
+g_t
+=
+\nabla \hat R_n(\theta_t)
+```
+
+for every individual step.
+
+It means that if we repeatedly sampled stochastic gradients at the same parameter point and averaged them, that average would equal the full gradient.
+
+### Quick Example
+
+Suppose the gradients from three training examples are:
+
+```math
+g_1=2,
+\qquad
+g_2=4,
+\qquad
+g_3=6.
+```
+
+The full gradient is:
+
+```math
+\frac{2+4+6}{3}
+=
+4.
+```
+
+If SGD selects one example uniformly, the stochastic gradient may be (2), (4), or (6).
+
+Its expectation is:
+
+```math
+\mathbb{E}[g]
+=
+\frac13(2)
++
+\frac13(4)
++
+\frac13(6)
+=
+4.
+```
+
+So an individual stochastic gradient can differ from the full gradient, while its average remains correct.
+
+```math
+\boxed{
+\text{individual stochastic gradient}
+\neq
+\text{full gradient in general}
+}
+```
+
+but:
+
+```math
+\boxed{
+\mathbb{E}[\text{stochastic gradient}]
+=
+\text{full gradient}
+}
+```
 
 **Illustration:** Individual stochastic gradients are noisy, but their average points toward the same gradient as the complete dataset.
-
 ---
 
 ## 5. Gradient Noise and Variance
