@@ -278,6 +278,7 @@ but:
 ```
 
 **Illustration:** Individual stochastic gradients are noisy, but their average points toward the same gradient as the complete dataset.
+
 ---
 
 ## 5. Gradient Noise and Variance
