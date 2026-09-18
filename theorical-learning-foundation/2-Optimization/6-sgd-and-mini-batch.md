@@ -355,6 +355,8 @@ while:
 ```
 
 **Illustration:** SGD is unbiased because its average direction matches the full gradient, but it is noisy because each individual update can still deviate from that direction.
+
+
 ---
 
 ## 6. Mini-Batch Gradient Descent
