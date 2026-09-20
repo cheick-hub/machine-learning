@@ -18,7 +18,7 @@ abla J(	heta^*)=0), but it is not necessarily a minimum.
 A point (	heta^*) is called a **critical point** or **stationary point** when:
 
 ```math
-\nabla J(\theta^\*)=0.
+\nabla J$\theta^*$=0.
 ```
 
 At such a point, the first-order information vanishes.
@@ -26,7 +26,7 @@ At such a point, the first-order information vanishes.
 However:
 
 ```math
-\nabla J(\theta^\*)=0
+\nabla J$\theta^*$=0
 ```
 
 does **not** automatically imply that (	heta^*) is a minimum.
@@ -46,9 +46,9 @@ A stationary point may be:
 A point (	heta^*) is a **local minimum** if nearby points have objective values at least as large:
 
 ```math
-J(\theta^\*)
+J$\theta^*$
 \le
-J(\theta)
+J$\theta$
 ```
 
 for all (	heta) sufficiently close to (	heta^*).
@@ -56,9 +56,9 @@ for all (	heta) sufficiently close to (	heta^*).
 Similarly, (	heta^*) is a **local maximum** if:
 
 ```math
-J(\theta^\*)
+J$\theta^*$
 \ge
-J(\theta)
+J$\theta$
 ```
 
 for nearby (	heta).
@@ -76,9 +76,9 @@ At a saddle point, the objective may increase in some directions and decrease in
 For a twice-differentiable objective, the Hessian is:
 
 ```math
-H(\theta)
+H$\theta$
 =
-\nabla^2 J(\theta).
+\nabla^2 J$\theta$.
 ```
 
 At a stationary point (	heta^*), the Hessian describes the local curvature.
@@ -86,7 +86,7 @@ At a stationary point (	heta^*), the Hessian describes the local curvature.
 If:
 
 ```math
-H(\theta^\*) \succ 0,
+H$\theta^*$ \succ 0,
 ```
 
 the Hessian is positive definite, and (	heta^*) is a strict local minimum.
@@ -94,7 +94,7 @@ the Hessian is positive definite, and (	heta^*) is a strict local minimum.
 If:
 
 ```math
-H(\theta^\*) \prec 0,
+H$\theta^*$ \prec 0,
 ```
 
 the Hessian is negative definite, and (	heta^*) is a strict local maximum.
@@ -111,7 +111,7 @@ If the Hessian is only semidefinite, the second-order test may be inconclusive.
 
 Before defining convex functions, we define convex sets.
 
-A set (C) is convex if, for any (x,y\in C) and any (lambda\in[0,1]),
+A set $C$ is convex if, for any $x,y\in C$ and any $\lambda\in[0,1]$,
 
 ```math
 \lambda x + (1-\lambda)y
@@ -128,7 +128,7 @@ Convexity of the domain is important because convex functions are defined over c
 
 ## 5. Convex Functions
 
-A function (J) defined on a convex set is convex if, for any (	heta_1,	heta_2) and any (lambda\in[0,1]),
+A function $J$ defined on a convex set is convex if, for any (	heta_1,	heta_2) and any $\lambda\in[0,1]$,
 
 ```math
 J(
@@ -160,19 +160,19 @@ This removes the distinction between local and global minima.
 
 ## 6. First-Order Characterization of Convexity
 
-If (J) is differentiable, convexity is equivalent to:
+If $J$ is differentiable, convexity is equivalent to:
 
 ```math
-J(y)
+J$y$
 \ge
-J(x)
+J$x$
 +
-\nabla J(x)^\top(y-x)
+\nabla J$x$^\top(y-x)
 ```
 
-for all (x) and (y).
+for all $x$ and $y$.
 
-The right-hand side is the first-order Taylor approximation of (J) around (x).
+The right-hand side is the first-order Taylor approximation of $J$ around $x$.
 
 So for a convex function, the tangent plane is always a global lower bound.
 
@@ -181,15 +181,15 @@ This gives an important result.
 If:
 
 ```math
-\nabla J(\theta^\*)=0,
+\nabla J$\theta^*$=0,
 ```
 
 then:
 
 ```math
-J(\theta)
+J$\theta$
 \ge
-J(\theta^\*)
+J$\theta^*$
 ```
 
 for every (	heta).
@@ -198,9 +198,9 @@ Therefore:
 
 ```math
 \boxed{
-\nabla J(\theta^\*)=0
+\nabla J$\theta^*$=0
 \quad\Rightarrow\quad
-\theta^\* \text{ is a global minimizer}
+\theta^* \text{ is a global minimizer}
 }
 ```
 
@@ -212,10 +212,10 @@ for differentiable convex objectives.
 
 ## 7. Second-Order Characterization of Convexity
 
-If (J) is twice differentiable, then (J) is convex if:
+If $J$ is twice differentiable, then $J$ is convex if:
 
 ```math
-\nabla^2 J(\theta)
+\nabla^2 J$\theta$
 \succeq
 0
 ```
@@ -224,11 +224,11 @@ for every (	heta) in its domain.
 
 This means the Hessian is positive semidefinite everywhere.
 
-Equivalently, for every direction (v),
+Equivalently, for every direction $v$,
 
 ```math
 v^\top
-\nabla^2 J(\theta)
+\nabla^2 J$\theta$
 v
 \ge
 0.
@@ -244,7 +244,7 @@ So the function never has negative curvature.
 
 Jensen's inequality is one of the most important consequences of convexity.
 
-For a convex function (f), weights (lambda_i\ge0), and:
+For a convex function $f$, weights $\lambda_i\ge0$, and:
 
 ```math
 \sum_{i=1}^{m}\lambda_i=1,
@@ -286,7 +286,7 @@ The intuition is:
 }
 ```
 
-for convex (f).
+for convex $f$.
 
 Jensen's inequality appears throughout machine learning, probability, expected loss analysis, information theory, and variational methods.
 
@@ -300,20 +300,20 @@ Convexity requires nonnegative curvature.
 
 Strong convexity requires a **strictly positive lower bound** on curvature.
 
-A differentiable function (J) is (mu)-strongly convex if there exists:
+A differentiable function $J$ is $\mu$-strongly convex if there exists:
 
 ```math
 \mu>0
 ```
 
-such that for all (x,y),
+such that for all $x,y$,
 
 ```math
-J(y)
+J$y$
 \ge
-J(x)
+J$x$
 +
-\nabla J(x)^\top(y-x)
+\nabla J$x$^\top(y-x)
 +
 \frac{\mu}{2}
 \|y-x\|_2^2.
@@ -322,11 +322,11 @@ J(x)
 Compare this with ordinary convexity:
 
 ```math
-J(y)
+J$y$
 \ge
-J(x)
+J$x$
 +
-\nabla J(x)^\top(y-x).
+\nabla J$x$^\top(y-x).
 ```
 
 Strong convexity adds:
@@ -338,11 +338,11 @@ Strong convexity adds:
 
 This forces the function to bend upward by at least a certain amount.
 
-If (J) is twice differentiable, strong convexity is equivalent to:
+If $J$ is twice differentiable, strong convexity is equivalent to:
 
 ```math
 \boxed{
-\nabla^2 J(\theta)
+\nabla^2 J$\theta$
 \succeq
 \mu I
 }
@@ -350,9 +350,9 @@ If (J) is twice differentiable, strong convexity is equivalent to:
 
 for every (	heta).
 
-This means every eigenvalue of the Hessian is at least (mu>0).
+This means every eigenvalue of the Hessian is at least $\mu>0$.
 
-The parameter (mu) measures the minimum guaranteed curvature.
+The parameter $\mu$ measures the minimum guaranteed curvature.
 
 Important consequences include:
 
@@ -366,21 +366,21 @@ Important consequences include:
 Consider:
 
 ```math
-f(x)=x^2.
+f$x$=x^2.
 ```
 
 Then:
 
 ```math
-f''(x)=2.
+f''$x$=2.
 ```
 
-So the function is (2)-strongly convex.
+So the function is $2$-strongly convex.
 
 Now consider:
 
 ```math
-f(x)=x^4.
+f$x$=x^4.
 ```
 
 It is convex, but:
@@ -389,7 +389,7 @@ It is convex, but:
 f''(0)=0.
 ```
 
-Therefore it is not strongly convex over all of (mathbb{R}).
+Therefore it is not strongly convex over all of $\mathbb{R}$.
 
 **Illustration:** Convex means bowl-shaped; strongly convex means bowl-shaped with a guaranteed minimum amount of curvature everywhere.
 
@@ -400,7 +400,7 @@ Therefore it is not strongly convex over all of (mathbb{R}).
 Without convexity:
 
 ```math
-\nabla J(\theta)=0
+\nabla J$\theta$=0
 ```
 
 may correspond to a minimum, maximum, or saddle point.
@@ -408,7 +408,7 @@ may correspond to a minimum, maximum, or saddle point.
 With convexity:
 
 ```math
-\nabla J(\theta^\*)=0
+\nabla J$\theta^*$=0
 ```
 
 implies that (	heta^*) is a global minimizer.
@@ -433,7 +433,7 @@ The central distinction is:
 
 ```math
 \boxed{
-\nabla J(\theta)=0
+\nabla J$\theta$=0
 \text{ means stationary, not necessarily minimum}
 }
 ```
@@ -442,8 +442,8 @@ while for differentiable convex objectives:
 
 ```math
 \boxed{
-\nabla J(\theta^\*)=0
+\nabla J$\theta^*$=0
 \Rightarrow
-\theta^\* \text{ is globally optimal}
+\theta^* \text{ is globally optimal}
 }
 ```
