@@ -142,6 +142,9 @@ As $\lambda$ moves from $0$ to $1$, $z_\lambda$ moves along the entire segment f
 
 > If two points are allowed, then every straight-line interpolation between them is also allowed.
 
+![Convex and non-convex sets](assets/convex-sets.svg)
+
+
 A filled disk, rectangle, triangle, and $\mathbb{R}^n$ are convex sets. A ring, crescent-shaped region, U-shaped region, or two disconnected regions are generally **not** convex.
 
 ### Example: a non-convex ring
@@ -241,6 +244,9 @@ J(2)=4\le 8=\frac12J(0)+\frac12J(4).
 ```
 
 The actual function value at the midpoint lies below the height of the straight chord connecting the two endpoint values.
+
+![Convex function and chord inequality for J(theta)=theta^2](assets/convex-function-chord.svg)
+
 
 ### Convex set vs. convex function
 
