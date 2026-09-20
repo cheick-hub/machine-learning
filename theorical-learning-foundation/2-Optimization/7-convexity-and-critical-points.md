@@ -274,11 +274,11 @@ A convex objective therefore cannot contain an isolated local minimum that is wo
 If $J$ is differentiable, convexity is equivalent to:
 
 ```math
-J$y$
+J(y)
 \ge
-J$x$
+J(x)
 +
-\nabla J$x$^\top(y-x)
+\nabla J(x)^\top (y-x)
 ```
 
 for all $x$ and $y$.
