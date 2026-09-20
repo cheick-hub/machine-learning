@@ -108,40 +108,153 @@ If the Hessian is only semidefinite, the second-order test may be inconclusive.
 
 ## 4. Convex Sets
 
-Before defining convex functions, we define convex sets.
+Before defining convex functions, it helps to understand **convex sets**.
 
-A set $C$ is convex if, for any $x,y\in C$ and any $\lambda\in[0,1]$,
+A set $C$ is convex if, for any two points $x,y\in C$ and any $\lambda\in[0,1]$,
 
 ```math
-\lambda x + (1-\lambda)y
-\in C.
+\lambda x+(1-\lambda)y\in C.
 ```
 
-This means the entire line segment between any two points in the set remains inside the set.
+The expression
 
-Convexity of the domain is important because convex functions are defined over convex sets.
+```math
+z_\lambda=\lambda x+(1-\lambda)y
+```
 
-**Illustration:** A filled disk is convex because every line segment between two points stays inside it; a crescent-shaped region is not.
+describes a point on the straight line segment between $x$ and $y$.
+
+For example:
+
+```math
+\lambda=0 \Rightarrow z_\lambda=y,
+```
+
+```math
+\lambda=\frac{1}{2} \Rightarrow z_\lambda=\frac{x+y}{2},
+```
+
+```math
+\lambda=1 \Rightarrow z_\lambda=x.
+```
+
+As $\lambda$ moves from $0$ to $1$, $z_\lambda$ moves along the entire segment from $y$ to $x$.
+
+> If two points are allowed, then every straight-line interpolation between them is also allowed.
+
+A filled disk, rectangle, triangle, and $\mathbb{R}^n$ are convex sets. A ring, crescent-shaped region, U-shaped region, or two disconnected regions are generally **not** convex.
+
+### Example: a non-convex ring
+
+Consider
+
+```math
+C=\left\{(x_1,x_2)\in\mathbb{R}^2:1\le x_1^2+x_2^2\le 4\right\}.
+```
+
+Choose
+
+```math
+x=(-1.5,0),\qquad y=(1.5,0).
+```
+
+Both points belong to $C$. But for $\lambda=\frac12$,
+
+```math
+\frac12x+\frac12y=(0,0).
+```
+
+The point $(0,0)$ is not in $C$ because it lies in the hole of the ring. Therefore $C$ is not convex.
+
+### Why the domain matters
+
+When defining a convex function, we must evaluate the function at interpolated inputs such as
+
+```math
+\lambda\theta_1+(1-\lambda)\theta_2.
+```
+
+If the domain were not convex, this interpolated point could fall outside the domain, so the function might not even be defined there.
+
+```text
+convex set
+    ↓
+interpolated inputs remain valid
+```
 
 ---
 
 ## 5. Convex Functions
 
-A function $J$ defined on a convex set is convex if, for any $\theta_1,\theta_2$ and any $\lambda\in[0,1]$,
+Now suppose $J$ is defined on a convex set. The function is convex if, for any $\theta_1,\theta_2$ in its domain and any $\lambda\in[0,1]$,
 
 ```math
-J(
-\lambda\theta_1
-+
-(1-\lambda)\theta_2
-)
+J\left(\lambda\theta_1+(1-\lambda)\theta_2\right)
 \le
-\lambda J(\theta_1)
-+
-(1-\lambda)J(\theta_2).
+\lambda J(\theta_1)+(1-\lambda)J(\theta_2).
 ```
 
-Geometrically, the line segment joining two points on the graph lies above the graph of the function.
+This compares **two different quantities**.
+
+The left-hand side means:
+
+> First interpolate the inputs, then evaluate the function.
+
+The right-hand side means:
+
+> First evaluate the function at the two endpoints, then interpolate their function values.
+
+For a convex function, the first quantity can never be larger than the second.
+
+Geometrically, if we take two points on the graph, $(\theta_1,J(\theta_1))$ and $(\theta_2,J(\theta_2))$, then the straight chord joining them lies **on or above** the graph of the function.
+
+### Example: $J(\theta)=\theta^2$
+
+Take
+
+```math
+\theta_1=0,\qquad \theta_2=4,\qquad \lambda=\frac12.
+```
+
+The interpolated input is
+
+```math
+\frac12(0)+\frac12(4)=2,
+```
+
+so
+
+```math
+J(2)=2^2=4.
+```
+
+Interpolating the endpoint values gives
+
+```math
+\frac12J(0)+\frac12J(4)=\frac12(0)+\frac12(16)=8.
+```
+
+Therefore,
+
+```math
+J(2)=4\le 8=\frac12J(0)+\frac12J(4).
+```
+
+The actual function value at the midpoint lies below the height of the straight chord connecting the two endpoint values.
+
+### Convex set vs. convex function
+
+```text
+convex set
+    ↓
+the interpolated INPUT stays inside the domain
+
+convex function
+    ↓
+the function VALUE stays below the chord
+```
+
+The first property concerns **where we are allowed to evaluate the function**. The second concerns **the shape of the function itself**.
 
 The main optimization consequence is:
 
@@ -151,12 +264,11 @@ The main optimization consequence is:
 }
 ```
 
-This removes the distinction between local and global minima.
+A convex objective therefore cannot contain an isolated local minimum that is worse than another minimum elsewhere.
 
-**Illustration:** A convex objective has no isolated bad local minima.
+**Illustration:** A convex objective is globally bowl-like: moving between two points on its graph never reveals a hidden lower valley beneath a bad local minimum.
 
 ---
-
 ## 6. First-Order Characterization of Convexity
 
 If $J$ is differentiable, convexity is equivalent to:
