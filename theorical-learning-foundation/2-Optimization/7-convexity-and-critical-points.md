@@ -18,7 +18,7 @@ abla J(	heta^*)=0), but it is not necessarily a minimum.
 A point (	heta^*) is called a **critical point** or **stationary point** when:
 
 ```math
-\nabla J$\theta^*$=0.
+\nabla J(\theta^{*})=0.
 ```
 
 At such a point, the first-order information vanishes.
@@ -26,7 +26,7 @@ At such a point, the first-order information vanishes.
 However:
 
 ```math
-\nabla J$\theta^*$=0
+\nabla J(\theta^{*})=0
 ```
 
 does **not** automatically imply that (	heta^*) is a minimum.
@@ -46,22 +46,22 @@ A stationary point may be:
 A point (	heta^*) is a **local minimum** if nearby points have objective values at least as large:
 
 ```math
-J$\theta^*$
+J(\theta^{*})
 \le
 J$\theta$
 ```
 
-for all (	heta) sufficiently close to (	heta^*).
+for all $\theta$ sufficiently close to (	heta^*).
 
 Similarly, (	heta^*) is a **local maximum** if:
 
 ```math
-J$\theta^*$
+J(\theta^{*})
 \ge
 J$\theta$
 ```
 
-for nearby (	heta).
+for nearby $\theta$.
 
 A **saddle point** is a stationary point that is neither a local minimum nor a local maximum.
 
@@ -86,7 +86,7 @@ At a stationary point (	heta^*), the Hessian describes the local curvature.
 If:
 
 ```math
-H$\theta^*$ \succ 0,
+H(\theta^{*}) \succ 0,
 ```
 
 the Hessian is positive definite, and (	heta^*) is a strict local minimum.
@@ -94,7 +94,7 @@ the Hessian is positive definite, and (	heta^*) is a strict local minimum.
 If:
 
 ```math
-H$\theta^*$ \prec 0,
+H(\theta^{*}) \prec 0,
 ```
 
 the Hessian is negative definite, and (	heta^*) is a strict local maximum.
@@ -181,7 +181,7 @@ This gives an important result.
 If:
 
 ```math
-\nabla J$\theta^*$=0,
+\nabla J(\theta^{*})=0,
 ```
 
 then:
@@ -189,16 +189,16 @@ then:
 ```math
 J$\theta$
 \ge
-J$\theta^*$
+J(\theta^{*})
 ```
 
-for every (	heta).
+for every $\theta$.
 
 Therefore:
 
 ```math
 \boxed{
-\nabla J$\theta^*$=0
+\nabla J(\theta^{*})=0
 \quad\Rightarrow\quad
 \theta^* \text{ is a global minimizer}
 }
@@ -220,7 +220,7 @@ If $J$ is twice differentiable, then $J$ is convex if:
 0
 ```
 
-for every (	heta) in its domain.
+for every $\theta$ in its domain.
 
 This means the Hessian is positive semidefinite everywhere.
 
@@ -348,7 +348,7 @@ If $J$ is twice differentiable, strong convexity is equivalent to:
 }
 ```
 
-for every (	heta).
+for every $\theta$.
 
 This means every eigenvalue of the Hessian is at least $\mu>0$.
 
@@ -366,13 +366,13 @@ Important consequences include:
 Consider:
 
 ```math
-f$x$=x^2.
+f(x)=x^2.
 ```
 
 Then:
 
 ```math
-f''$x$=2.
+f''(x)=2.
 ```
 
 So the function is $2$-strongly convex.
@@ -380,7 +380,7 @@ So the function is $2$-strongly convex.
 Now consider:
 
 ```math
-f$x$=x^4.
+f(x)=x^4.
 ```
 
 It is convex, but:
@@ -408,7 +408,7 @@ may correspond to a minimum, maximum, or saddle point.
 With convexity:
 
 ```math
-\nabla J$\theta^*$=0
+\nabla J(\theta^{*})=0
 ```
 
 implies that (	heta^*) is a global minimizer.
@@ -442,7 +442,7 @@ while for differentiable convex objectives:
 
 ```math
 \boxed{
-\nabla J$\theta^*$=0
+\nabla J(\theta^{*})=0
 \Rightarrow
 \theta^* \text{ is globally optimal}
 }
