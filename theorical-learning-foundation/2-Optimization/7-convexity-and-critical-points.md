@@ -247,6 +247,40 @@ The actual function value at the midpoint lies below the height of the straight 
 
 ![Convex function and chord inequality for J(theta)=theta^2](assets/convex-function-chord.svg)
 
+### Non-convex comparison
+
+For contrast, consider
+
+```math
+J(\theta)=\theta^4-3\theta^2+1.
+```
+
+Take \(\theta_1=-1\), \(\theta_2=1\), and \(\lambda=\frac12\). Then the interpolated input is \(0\), and
+
+```math
+J(0)=1,
+```
+
+while the interpolated endpoint values are
+
+```math
+\frac12J(-1)+\frac12J(1)
+=
+\frac12(-1)+\frac12(-1)
+=
+-1.
+```
+
+Therefore,
+
+```math
+J(0)=1>-1,
+```
+
+which violates the convexity inequality. Geometrically, the graph rises **above** the chord connecting the two endpoint values.
+
+![Non-convex function violating the chord condition](assets/non-convex-function-chord.svg)
+
 
 ### Convex set vs. convex function
 
