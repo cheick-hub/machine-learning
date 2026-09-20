@@ -47,7 +47,7 @@ A point $\theta^{*}$ is a **local minimum** if nearby points have objective valu
 ```math
 J(\theta^{*})
 \le
-J$\theta$
+J(\theta)
 ```
 
 for all $\theta$ sufficiently close to $\theta^{*}$.
@@ -57,7 +57,7 @@ Similarly, $\theta^{*}$ is a **local maximum** if:
 ```math
 J(\theta^{*})
 \ge
-J$\theta$
+J(\theta)
 ```
 
 for nearby $\theta$.
@@ -75,9 +75,9 @@ At a saddle point, the objective may increase in some directions and decrease in
 For a twice-differentiable objective, the Hessian is:
 
 ```math
-H$\theta$
+H(\theta)
 =
-\nabla^2 J$\theta$.
+\nabla^2 J(\theta).
 ```
 
 At a stationary point $\theta^{*}$, the Hessian describes the local curvature.
@@ -186,7 +186,7 @@ If:
 then:
 
 ```math
-J$\theta$
+J(\theta)
 \ge
 J(\theta^{*})
 ```
@@ -214,7 +214,7 @@ for differentiable convex objectives.
 If $J$ is twice differentiable, then $J$ is convex if:
 
 ```math
-\nabla^2 J$\theta$
+\nabla^2 J(\theta)
 \succeq
 0
 ```
@@ -227,7 +227,7 @@ Equivalently, for every direction $v$,
 
 ```math
 v^\top
-\nabla^2 J$\theta$
+\nabla^2 J(\theta)
 v
 \ge
 0.
@@ -341,7 +341,7 @@ If $J$ is twice differentiable, strong convexity is equivalent to:
 
 ```math
 \boxed{
-\nabla^2 J$\theta$
+\nabla^2 J(\theta)
 \succeq
 \mu I
 }
@@ -399,7 +399,7 @@ Therefore it is not strongly convex over all of $\mathbb{R}$.
 Without convexity:
 
 ```math
-\nabla J$\theta$=0
+\nabla J(\theta)=0
 ```
 
 may correspond to a minimum, maximum, or saddle point.
@@ -432,7 +432,7 @@ The central distinction is:
 
 ```math
 \boxed{
-\nabla J$\theta$=0
+\nabla J(\theta)=0
 \text{ means stationary, not necessarily minimum}
 }
 ```
