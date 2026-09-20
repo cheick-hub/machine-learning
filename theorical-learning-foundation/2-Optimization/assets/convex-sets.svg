@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="700" viewBox="0 0 1400 700">
+<rect width="1400" height="700" fill="white"/>
+<style>
+text{font-family:Arial,Helvetica,sans-serif;fill:#111827}.title{font-size:34px;font-weight:700}.label{font-size:26px;font-weight:600}.math{font-family:Georgia,'Times New Roman',serif;font-size:27px;font-style:italic}.cap{font-size:22px}
+</style>
+<text x="350" y="58" text-anchor="middle" class="title">Convex set</text>
+<text x="1050" y="58" text-anchor="middle" class="title">Non-convex set</text>
+
+<circle cx="350" cy="320" r="220" fill="#dbeafe" stroke="#2563eb" stroke-width="4"/>
+<text x="350" y="145" text-anchor="middle" class="math">C</text>
+<circle cx="205" cy="350" r="10" fill="#111827"/><circle cx="500" cy="260" r="10" fill="#111827"/>
+<line x1="205" y1="350" x2="500" y2="260" stroke="#dc2626" stroke-width="5"/>
+<circle cx="352" cy="305" r="9" fill="#dc2626"/>
+<text x="175" y="388" class="math">x</text><text x="512" y="252" class="math">y</text>
+<text x="372" y="340" class="math">zλ</text>
+<text x="350" y="595" text-anchor="middle" class="cap">For every x,y ∈ C, the full segment stays inside C.</text>
+<text x="350" y="630" text-anchor="middle" class="math">zλ = λx + (1 − λ)y ∈ C</text>
+
+<circle cx="1050" cy="320" r="220" fill="#fee2e2" stroke="#b91c1c" stroke-width="4"/>
+<circle cx="1050" cy="320" r="95" fill="white" stroke="#b91c1c" stroke-width="4"/>
+<text x="1050" y="145" text-anchor="middle" class="math">C</text>
+<circle cx="900" cy="320" r="10" fill="#111827"/><circle cx="1200" cy="320" r="10" fill="#111827"/>
+<line x1="900" y1="320" x2="1200" y2="320" stroke="#dc2626" stroke-width="5"/>
+<circle cx="1050" cy="320" r="9" fill="#dc2626"/>
+<text x="865" y="362" class="math">x</text><text x="1210" y="362" class="math">y</text>
+<text x="1070" y="300" class="math">z₁⁄₂</text>
+<text x="1050" y="395" text-anchor="middle" class="label" fill="#b91c1c">not in C</text>
+<text x="1050" y="585" text-anchor="middle" class="cap">Example: x = (−1.5,0), y = (1.5,0).</text>
+<text x="1050" y="625" text-anchor="middle" class="cap">Their midpoint (0,0) lies in the hole, so C is not convex.</text>
+</svg>
