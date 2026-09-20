@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="820" viewBox="0 0 1400 820">
+<rect width="1400" height="820" fill="white"/>
+<style>
+text{font-family:Arial,Helvetica,sans-serif;fill:#111827}
+.title{font-family:Georgia,'Times New Roman',serif;font-size:42px;font-style:italic}
+.label{font-size:24px}
+.math{font-family:Georgia,'Times New Roman',serif;font-size:28px;font-style:italic}
+.note{font-size:25px;font-weight:600}
+</style>
+<text x="700" y="60" text-anchor="middle" class="title">J(θ) = θ⁴ − 3θ² + 1</text>
+
+<!-- axes -->
+<line x1="110" y1="690" x2="1300" y2="690" stroke="#111827" stroke-width="3"/>
+<line x1="700" y1="100" x2="700" y2="740" stroke="#c7c7c7" stroke-width="2" stroke-dasharray="10 9"/>
+<line x1="110" y1="430" x2="1300" y2="430" stroke="#c7c7c7" stroke-width="2" stroke-dasharray="10 9"/>
+<text x="1320" y="708" class="math">θ</text>
+<text x="45" y="420" class="math">J(θ)</text>
+
+<!-- non-convex quartic -->
+<path d="M150 120
+         C220 370 285 590 380 620
+         C485 650 590 485 700 385
+         C810 485 915 650 1020 620
+         C1115 590 1180 370 1250 120"
+      fill="none" stroke="#1976d2" stroke-width="6"/>
+
+<!-- chord between theta=-1 and theta=1 -->
+<line x1="405" y1="600" x2="995" y2="600" stroke="#e52521" stroke-width="6"/>
+<circle cx="405" cy="600" r="11" fill="#e52521"/>
+<circle cx="995" cy="600" r="11" fill="#e52521"/>
+<circle cx="700" cy="385" r="11" fill="#e52521"/>
+
+<!-- minima -->
+<circle cx="350" cy="625" r="11" fill="#0a9f38"/>
+<circle cx="1050" cy="625" r="11" fill="#0a9f38"/>
+
+<text x="330" y="575" class="label">(-1, -1)</text>
+<text x="940" y="575" class="label">(1, -1)</text>
+<text x="700" y="345" text-anchor="middle" class="label">Local maximum (0, 1)</text>
+
+<text x="700" y="650" text-anchor="middle" class="note" fill="#e52521">Chord value at θ = 0 is -1</text>
+<text x="760" y="315" class="math">J(0) = 1 &gt; -1</text>
+
+<text x="290" y="685" class="label">Local minimum</text>
+<text x="1000" y="685" class="label">Local minimum</text>
+
+<text x="700" y="780" text-anchor="middle" class="label">
+Convexity fails because the graph rises above the chord between two points.
+</text>
+</svg>
