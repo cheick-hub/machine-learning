@@ -2,8 +2,7 @@
 
 ## Key Takeaways
 
-- A **critical point** satisfies (
-abla J(	heta^*)=0), but it is not necessarily a minimum.
+- A **critical point** satisfies $\nabla J(\theta^{*})=0$, but it is not necessarily a minimum.
 - The Hessian helps classify critical points through local curvature.
 - For convex functions, every local minimum is also a global minimum.
 - For differentiable convex functions, any stationary point is a global minimizer.
@@ -15,7 +14,7 @@ abla J(	heta^*)=0), but it is not necessarily a minimum.
 
 ## 1. Critical and Stationary Points
 
-A point (	heta^*) is called a **critical point** or **stationary point** when:
+A point $\theta^{*}$ is called a **critical point** or **stationary point** when:
 
 ```math
 \nabla J(\theta^{*})=0.
@@ -29,7 +28,7 @@ However:
 \nabla J(\theta^{*})=0
 ```
 
-does **not** automatically imply that (	heta^*) is a minimum.
+does **not** automatically imply that $\theta^{*}$ is a minimum.
 
 A stationary point may be:
 
@@ -43,7 +42,7 @@ A stationary point may be:
 
 ## 2. Local Minimum, Maximum, and Saddle Point
 
-A point (	heta^*) is a **local minimum** if nearby points have objective values at least as large:
+A point $\theta^{*}$ is a **local minimum** if nearby points have objective values at least as large:
 
 ```math
 J(\theta^{*})
@@ -51,9 +50,9 @@ J(\theta^{*})
 J$\theta$
 ```
 
-for all $\theta$ sufficiently close to (	heta^*).
+for all $\theta$ sufficiently close to $\theta^{*}$.
 
-Similarly, (	heta^*) is a **local maximum** if:
+Similarly, $\theta^{*}$ is a **local maximum** if:
 
 ```math
 J(\theta^{*})
@@ -81,7 +80,7 @@ H$\theta$
 \nabla^2 J$\theta$.
 ```
 
-At a stationary point (	heta^*), the Hessian describes the local curvature.
+At a stationary point $\theta^{*}$, the Hessian describes the local curvature.
 
 If:
 
@@ -89,7 +88,7 @@ If:
 H(\theta^{*}) \succ 0,
 ```
 
-the Hessian is positive definite, and (	heta^*) is a strict local minimum.
+the Hessian is positive definite, and $\theta^{*}$ is a strict local minimum.
 
 If:
 
@@ -97,9 +96,9 @@ If:
 H(\theta^{*}) \prec 0,
 ```
 
-the Hessian is negative definite, and (	heta^*) is a strict local maximum.
+the Hessian is negative definite, and $\theta^{*}$ is a strict local maximum.
 
-If the Hessian has both positive and negative eigenvalues, it is indefinite, and (	heta^*) is a saddle point.
+If the Hessian has both positive and negative eigenvalues, it is indefinite, and $\theta^{*}$ is a saddle point.
 
 If the Hessian is only semidefinite, the second-order test may be inconclusive.
 
@@ -128,7 +127,7 @@ Convexity of the domain is important because convex functions are defined over c
 
 ## 5. Convex Functions
 
-A function $J$ defined on a convex set is convex if, for any (	heta_1,	heta_2) and any $\lambda\in[0,1]$,
+A function $J$ defined on a convex set is convex if, for any $\theta_1,\theta_2$ and any $\lambda\in[0,1]$,
 
 ```math
 J(
@@ -200,7 +199,7 @@ Therefore:
 \boxed{
 \nabla J(\theta^{*})=0
 \quad\Rightarrow\quad
-\theta^* \text{ is a global minimizer}
+\theta^{*} \text{ is a global minimizer}
 }
 ```
 
@@ -411,7 +410,7 @@ With convexity:
 \nabla J(\theta^{*})=0
 ```
 
-implies that (	heta^*) is a global minimizer.
+implies that $\theta^{*}$ is a global minimizer.
 
 With strong convexity, that global minimizer is unique.
 
@@ -444,6 +443,6 @@ while for differentiable convex objectives:
 \boxed{
 \nabla J(\theta^{*})=0
 \Rightarrow
-\theta^* \text{ is globally optimal}
+\theta^{*} \text{ is globally optimal}
 }
 ```
