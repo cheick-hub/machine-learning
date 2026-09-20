@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="760" viewBox="0 0 1400 760">
+<rect width="1400" height="760" fill="white"/>
+<style>
+text{font-family:Arial,Helvetica,sans-serif;fill:#111827}.title{font-size:34px;font-weight:700}.math{font-family:Georgia,'Times New Roman',serif;font-size:28px;font-style:italic}.cap{font-size:23px}.small{font-size:20px}
+</style>
+<text x="700" y="55" text-anchor="middle" class="title">Convex function: the chord lies above the graph</text>
+<line x1="115" y1="650" x2="1280" y2="650" stroke="#111827" stroke-width="3"/>
+<line x1="115" y1="650" x2="115" y2="110" stroke="#111827" stroke-width="3"/>
+<text x="1300" y="665" class="math">θ</text><text x="55" y="115" class="math">J(θ)</text>
+
+<!-- parabola y = theta^2, mapped theta 0..4.2 and J 0..18 -->
+<path d="M115 650 C290 648 450 610 595 530 C750 445 900 315 1050 120" fill="none" stroke="#2563eb" stroke-width="6"/>
+<line x1="115" y1="650" x2="1050" y2="170" stroke="#dc2626" stroke-width="5"/>
+
+<circle cx="115" cy="650" r="10" fill="#111827"/>
+<circle cx="1050" cy="170" r="10" fill="#111827"/>
+<circle cx="582.5" cy="530" r="10" fill="#2563eb"/>
+<circle cx="582.5" cy="410" r="10" fill="#dc2626"/>
+<line x1="582.5" y1="410" x2="582.5" y2="530" stroke="#111827" stroke-width="3" stroke-dasharray="10 9"/>
+
+<text x="132" y="682" class="small">(0,0)</text>
+<text x="1072" y="162" class="small">(4,16)</text>
+<text x="604" y="548" class="small">(2,4)</text>
+<text x="604" y="402" class="small">(2,8)</text>
+<text x="615" y="478" class="math">4 ≤ 8</text>
+<text x="570" y="700" text-anchor="middle" class="math">θλ = 2</text>
+
+<line x1="170" y1="165" x2="250" y2="165" stroke="#2563eb" stroke-width="6"/>
+<text x="270" y="175" class="cap">J(θ) = θ²</text>
+<line x1="170" y1="215" x2="250" y2="215" stroke="#dc2626" stroke-width="5"/>
+<text x="270" y="225" class="cap">Chord between endpoint values</text>
+
+<text x="700" y="725" text-anchor="middle" class="cap">At λ = 1/2: J(2) = 4, while 1/2 J(0) + 1/2 J(4) = 8.</text>
+</svg>
