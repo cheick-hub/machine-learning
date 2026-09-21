@@ -196,7 +196,7 @@ This is why L2 shrinks coefficients smoothly but rarely produces exact zeros.
 **Illustration:** The round geometry of the L2 ball encourages small coefficients everywhere rather than sparse solutions.
 
 <img
-  src="images/regularization-geometry.png"
+  src="assets/regularization-geometry.png"
   alt="Geometric interpretation of L1 and L2 regularization"
   style="width: 60%; height: auto;"
 />
