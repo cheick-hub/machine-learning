@@ -38,6 +38,8 @@ A stationary point may be:
 
 **Illustration:** A zero slope can occur at the bottom of a valley, the top of a hill, or on a saddle-shaped surface.
 
+![3D examples of a local minimum, local maximum, and saddle point](assets/critical-points-3d.svg)
+
 ---
 
 ## 2. Local Minimum, Maximum, and Saddle Point
