@@ -195,11 +195,18 @@ This is why L2 shrinks coefficients smoothly but rarely produces exact zeros.
 
 **Illustration:** The round geometry of the L2 ball encourages small coefficients everywhere rather than sparse solutions.
 
-<img
-  src="assets/regularization-geometry.png"
-  alt="Geometric interpretation of L1 and L2 regularization"
-  style="width: 60%; height: auto;"
-/>
+<p align="center">
+  <img
+    src="assets/regularization-geometry.png"
+    alt="2D geometric interpretation of L1 and L2 regularization"
+    width="47%"
+  />
+  <img
+    src="assets/regularization-geometry-3d.png"
+    alt="3D geometric interpretation of L1 and L2 regularization"
+    width="45%"
+  />
+</p>
 
 **Circle shape explanation:** The L2 norm measures the Euclidean distance of a point from the origin:
 
