@@ -462,11 +462,11 @@ A differentiable function $J$ is $\mu$-strongly convex if there exists:
 such that for all $x,y$,
 
 ```math
-J$y$
+J(y)
 \ge
-J$x$
+J(x)
 +
-\nabla J$x$^\top(y-x)
+\nabla J(x)^\top(y-x)
 +
 \frac{\mu}{2}
 \|y-x\|_2^2.
@@ -475,11 +475,11 @@ J$x$
 Compare this with ordinary convexity:
 
 ```math
-J$y$
+J(y)
 \ge
-J$x$
+J(x)
 +
-\nabla J$x$^\top(y-x).
+\nabla J(x)^\top(y-x).
 ```
 
 Strong convexity adds:
