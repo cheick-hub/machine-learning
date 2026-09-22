@@ -308,6 +308,8 @@ The main optimization consequence is:
 
 A convex objective therefore cannot contain an isolated local minimum that is worse than another minimum elsewhere.
 
+> **Note on existence:** Convexity does **not** guarantee that a minimizer exists. Existence should be verified separately. A common sufficient condition is the **Weierstrass theorem**: a continuous function on a compact feasible set attains a minimum.
+
 **Illustration:** A convex objective is globally bowl-like: moving between two points on its graph never reveals a hidden lower valley beneath a bad local minimum.
 
 ---
