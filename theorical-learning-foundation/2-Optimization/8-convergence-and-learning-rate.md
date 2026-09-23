@@ -621,30 +621,30 @@ and:
 | **Smooth** | Gradient changes gradually; Gradient Descent can make controlled descent with a suitable step size. |
 | **Convex** | Every local minimum is global; for differentiable objectives, a stationary point is a global minimum. |
 | **Strongly convex** | The global minimizer is unique. |
-| **Smooth + convex** | Gradient Descent converges to the global optimal value, typically at a rate of (O(1/t)). |
-| **Smooth + strongly convex** | Gradient Descent converges geometrically to the unique global minimizer, typically at a rate proportional to (left(1-mu/Light)^t). |
+| **Smooth + convex** | Gradient Descent converges to the global optimal value, typically at a rate of $O(1/t)$. |
+| **Smooth + strongly convex** | Gradient Descent converges geometrically to the unique global minimizer, typically at a rate proportional to $\left(1-\mu/L\right)^t$. |
 
 A useful mental model is:
 
-```text
+\`\`\`text
 Smoothness
     ↓
 controlled gradient variation
     ↓
 descent with a suitable step size
-```
+\`\`\`
 
-```text
+\`\`\`text
 Convexity
     ↓
 stationarity implies global optimality
-```
+\`\`\`
 
-```text
+\`\`\`text
 Strong convexity
     ↓
 the global optimum is unique
-```
+\`\`\`
 
 Therefore, combining smoothness and strong convexity gives both:
 
