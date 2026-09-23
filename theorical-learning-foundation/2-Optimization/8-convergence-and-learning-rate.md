@@ -626,27 +626,10 @@ and:
 
 A useful mental model is:
 
-\`\`\`text
-Smoothness
-    ↓
-controlled gradient variation
-    ↓
-descent with a suitable step size
-\`\`\`
+Smoothness -> controlled gradient variation -> descent with a suitable step size.  
+Convexity -> stationarity implies global optimality.  
+Strong convexity -> the global optimum is unique.  
 
-\`\`\`text
-Convexity
-    ↓
-stationarity implies global optimality
-\`\`\`
-
-\`\`\`text
-Strong convexity
-    ↓
-the global optimum is unique
-\`\`\`
-
-Therefore, combining smoothness and strong convexity gives both:
-
+Therefore, combining smoothness and strong convexity gives both:  
 - favorable optimization dynamics;
 - a unique optimization target.
