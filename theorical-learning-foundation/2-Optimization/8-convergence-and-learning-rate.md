@@ -3,14 +3,14 @@
 ## Key Takeaways
 
 - Gradient Descent requires a suitable learning rate to decrease the objective reliably.
-- An (L)-Lipschitz gradient means the gradient cannot change arbitrarily fast.
-- For twice-differentiable objectives, (L) can be bounded using the Hessian.
-- The descent lemma gives a quadratic upper bound on how much an (L)-smooth function can change.
-- A common safe learning-rate scale is (eta le 1/L).
+- An $L$-Lipschitz gradient means the gradient cannot change arbitrarily fast.
+- For twice-differentiable objectives, $L$ can be bounded using the Hessian.
+- The descent lemma gives a quadratic upper bound on how much an $L$-smooth function can change.
+- A common safe learning-rate scale is $\eta \le 1/L$.
 - Smoothness is not mandatory for Gradient Descent to work, but it provides useful convergence guarantees.
 - Convexity determines whether stationary points are globally optimal.
 - Strong convexity gives faster geometric convergence.
-- The condition number (kappa=L/mu) measures how difficult the optimization landscape is.
+- The condition number $\kappa = L/\mu$ measures how difficult the optimization landscape is.
 
 ---
 
