@@ -48,7 +48,59 @@ When ordinary gradients fail, we need other tools.
 
 ## 2. Subgradients
 
-For a convex function (f), a vector (g) is a **subgradient** at (x) if:
+We first define the idea for a **scalar convex function**.
+
+Let:
+
+```math
+f:\mathbb{R}\rightarrow\mathbb{R}.
+```
+
+A scalar value `g` is a **subgradient** of `f` at `x` if:
+
+```math
+f(y)
+\ge
+f(x)
++
+g(y-x)
+```
+
+for every scalar `y`.
+
+Geometrically, the line:
+
+```math
+f(x)+g(y-x)
+```
+
+has slope `g`, passes through `(x,f(x))`, and must stay below the graph of `f`.
+
+If `f` is differentiable at `x`, there is only one subgradient:
+
+```math
+g=f'(x).
+```
+
+At a non-differentiable point, however, several slopes may satisfy the inequality.
+
+The set of all valid scalar subgradients at `x` is the **subdifferential**:
+
+```math
+\partial f(x)
+=
+\{g\in\mathbb{R}:
+f(y)\ge f(x)+g(y-x)
+\text{ for all } y\}.
+```
+
+Now generalize to a convex function of several variables:
+
+```math
+f:\mathbb{R}^d\rightarrow\mathbb{R}.
+```
+
+A vector `g\in\mathbb{R}^d` is a subgradient of `f` at `x\in\mathbb{R}^d` if:
 
 ```math
 f(y)
@@ -58,39 +110,39 @@ f(x)
 g^\top(y-x)
 ```
 
-for every (y).
+for every vector `y\in\mathbb{R}^d`.
 
-Compare this with the differentiable convex condition:
-
-```math
-f(y)
-\ge
-f(x)
-+
-\nabla f(x)^\top(y-x).
-```
-
-So the subgradient plays the same supporting-hyperplane role as the gradient.
-
-The difference is that a non-differentiable point may have several valid subgradients.
-
-The set of all subgradients at (x) is called the **subdifferential**:
+The subdifferential is therefore:
 
 ```math
-\partial f(x).
+\partial f(x)
+=
+\{g\in\mathbb{R}^d:
+f(y)\ge f(x)+g^\top(y-x)
+\text{ for all } y\}.
 ```
+
+When `f` is differentiable at `x`, this set contains only the ordinary gradient:
+
+```math
+\partial f(x)
+=
+\{\nabla f(x)\}.
+```
+
+So the usual gradient is a special case of a subgradient.
 
 ---
 
-## 3. Example: Absolute Value
+## 3. Scalar Example: Absolute Value
 
-For:
+Consider the scalar function:
 
 ```math
-f(x)=|x|,
+f(x)=|x|.
 ```
 
-the subdifferential is:
+Its subdifferential is:
 
 ```math
 \partial f(x)
@@ -102,13 +154,135 @@ the subdifferential is:
 \end{cases}
 ```
 
-At (x=0), the derivative does not exist, but the whole interval:
+For `x>0`, the function is differentiable and:
 
 ```math
-[-1,1]
+f'(x)=1,
 ```
 
-contains valid subgradients.
+so the only subgradient is `1`.
+
+For `x<0`:
+
+```math
+f'(x)=-1,
+```
+
+so the only subgradient is `-1`.
+
+The interesting case is `x=0`.
+
+At zero, the subgradient condition becomes:
+
+```math
+|y|
+\ge
+g y
+```
+
+for every scalar `y`.
+
+If `y>0`, then `|y|=y`, so:
+
+```math
+y
+\ge
+g y.
+```
+
+Dividing by the positive number `y` gives:
+
+```math
+g\le 1.
+```
+
+If `y<0`, then `|y|=-y`, so:
+
+```math
+-y
+\ge
+g y.
+```
+
+Dividing by the negative number `y` reverses the inequality:
+
+```math
+g\ge -1.
+```
+
+Both conditions must hold, therefore:
+
+```math
+-1
+\le
+g
+\le
+1.
+```
+
+Hence:
+
+```math
+\boxed{
+\partial |0|
+=
+[-1,1]
+}
+```
+
+There are infinitely many valid subgradients at zero.
+
+For example:
+
+```math
+-1,\quad -0.5,\quad 0,\quad 0.8,\quad 1
+```
+
+are all valid choices.
+
+The mathematical definition tells us **which values are allowed**, but it does not force a unique choice when several subgradients exist.
+
+For the function `|x|`, a subgradient method may use:
+
+```math
+g
+=
+\begin{cases}
+-1, & x<0,\\
+\text{any value in }[-1,1], & x=0,\\
+1, & x>0.
+\end{cases}
+```
+
+At `x=0`, choosing `g=0` is often natural because it keeps the iterate at the minimum.
+
+This also illustrates the convex optimality condition:
+
+```math
+\boxed{
+0
+\in
+\partial f(x^*)
+}
+```
+
+which generalizes the differentiable condition:
+
+```math
+\nabla f(x^*)=0.
+```
+
+For `f(x)=|x|`:
+
+```math
+0
+\in
+\partial |0|
+=
+[-1,1],
+```
+
+so `x=0` is correctly identified as a minimizer.
 
 ---
 
