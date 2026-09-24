@@ -194,6 +194,8 @@ Therefore:
 
 So at (x=0), any value between (-1) and (1), including (0), is a valid subgradient.
 
+
+![Subgradients of the absolute value function](assets/subgradient_abs_panel.png)
 ---
 
 ## 4. Subgradient Method
