@@ -110,6 +110,32 @@ At (x=0), the derivative does not exist, but the whole interval:
 
 contains valid subgradients.
 
+To see why, apply the scalar subgradient condition at (x=0):
+
+```math
+|y|
+\ge
+g y.
+```
+
+For (y>0), this requires (g\le 1). For (y<0), it requires (g\ge -1). Therefore:
+
+```math
+-1
+\le
+g
+\le
+1,
+```
+
+so:
+
+```math
+\partial |0|
+=
+[-1,1].
+```
+
 ---
 
 ## 4. Subgradient Method
