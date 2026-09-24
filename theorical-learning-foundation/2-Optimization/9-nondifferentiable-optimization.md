@@ -100,7 +100,7 @@ Now generalize to a convex function of several variables:
 f:\mathbb{R}^d\rightarrow\mathbb{R}.
 ```
 
-A vector `g\in\mathbb{R}^d` is a subgradient of `f` at `x\in\mathbb{R}^d` if:
+A vector $g\\in\\mathbb{R}^d$ is a subgradient of `f` at $x\\in\\mathbb{R}^d$ if:
 
 ```math
 f(y)
@@ -110,7 +110,7 @@ f(x)
 g^\top(y-x)
 ```
 
-for every vector `y\in\mathbb{R}^d`.
+for every vector $y\\in\\mathbb{R}^d$.
 
 The subdifferential is therefore:
 
