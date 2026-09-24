@@ -173,7 +173,7 @@ For a function (g), the proximal operator is defined by:
 
 ```math
 \boxed{
-\operatorname{prox}_{\eta g}(v)
+\mathrm{prox}_{\eta g}(v)
 =
 \arg\min_w
 \left[
@@ -236,7 +236,7 @@ Then it applies the proximal operator of the non-smooth part:
 \boxed{
 \theta_{t+1}
 =
-\operatorname{prox}_{\eta g}(v)
+\mathrm{prox}_{\eta g}(v)
 }
 ```
 
@@ -246,7 +246,7 @@ Equivalently:
 \boxed{
 \theta_{t+1}
 =
-\operatorname{prox}_{\eta g}
+\mathrm{prox}_{\eta g}
 \left(
 \theta_t
 -
@@ -282,7 +282,7 @@ g(w)
 Then:
 
 ```math
-\operatorname{prox}_{\eta\lambda|\cdot|}(v)
+\mathrm{prox}_{\eta\lambda|\cdot|}(v)
 =
 \arg\min_w
 \left[
@@ -364,9 +364,9 @@ Combining the three cases gives the **soft-thresholding operator**:
 
 ```math
 \boxed{
-\operatorname{prox}_{\eta\lambda|\cdot|}(v)
+\mathrm{prox}_{\eta\lambda|\cdot|}(v)
 =
-\operatorname{sign}(v)
+\mathrm{sign}(v)
 \max(
 |v|-\eta\lambda,
 0
