@@ -232,7 +232,7 @@ s_t
 
 keeps increasing.
 
-Therefore the effective learning rate may eventually become extremely small.
+Therefore, for parameters that repeatedly receive non-zero gradients, the effective learning rate can eventually become very small.
 
 ---
 
