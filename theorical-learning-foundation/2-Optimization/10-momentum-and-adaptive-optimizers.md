@@ -28,7 +28,9 @@ This uses one global learning rate for every parameter.
 
 On a well-conditioned objective, this can work very well.
 
-<img src="assets/gradient-descent-well-conditioned.png" alt="Gradient Descent on a smooth well-conditioned objective" width="60%">
+<p align="center">
+  <img src="assets/gradient-descent-well-conditioned.png" alt="Gradient Descent on a smooth well-conditioned objective" width="60%">
+</p>
 
 However, if the objective has very different curvature across directions, Gradient Descent may oscillate strongly in steep directions while making slow progress in flatter directions.
 
@@ -85,7 +87,9 @@ If gradients repeatedly change sign across a steep direction, those oscillations
 }
 ```
 
-<img src="assets/momentum-narrow-valley.png" alt="Momentum in a narrow valley" width="60%">
+<p align="center">
+  <img src="assets/momentum-narrow-valley.png" alt="Momentum in a narrow valley" width="60%">
+</p>
 
 **Illustration:** Momentum reduces zig-zagging across steep directions while building speed along a consistent descent direction.
 
@@ -124,7 +128,9 @@ Instead of measuring the gradient only at the current position, the method first
 
 It then evaluates the gradient there and corrects the update earlier.
 
-<img src="assets/nesterov-lookahead.png" alt="Nesterov Momentum look-ahead correction" width="60%">
+<p align="center">
+  <img src="assets/nesterov-lookahead.png" alt="Nesterov Momentum look-ahead correction" width="60%">
+</p>
 
 **Illustration:** Nesterov Momentum looks ahead along the accumulated direction, then uses the gradient at that future point to adjust the trajectory.
 
@@ -190,7 +196,9 @@ Coordinates with small or infrequent gradients retain relatively larger steps.
 
 This makes AdaGrad especially useful for sparse features or strongly uneven gradient scales.
 
-<img src="assets/adagrad-sparse-features.png" alt="AdaGrad with per-parameter learning rates" width="60%">
+<p align="center">
+  <img src="assets/adagrad-sparse-features.png" alt="AdaGrad with per-parameter learning rates" width="60%">
+</p>
 
 The main weakness is that:
 
@@ -234,7 +242,9 @@ Older gradients gradually lose influence.
 
 This allows the adaptive scale to react to more recent gradient behavior rather than remembering the entire optimization history equally.
 
-<img src="assets/rmsprop-noisy-objective.png" alt="RMSProp on a noisy non-stationary objective" width="60%">
+<p align="center">
+  <img src="assets/rmsprop-noisy-objective.png" alt="RMSProp on a noisy non-stationary objective" width="60%">
+</p>
 
 **Illustration:** RMSProp stabilizes parameter-wise learning rates using a moving estimate of recent squared gradients.
 
@@ -308,7 +318,9 @@ The update is:
 }
 ```
 
-<img src="assets/adam-noisy-ill-conditioned.png" alt="Adam on an ill-conditioned noisy optimization landscape" width="60%">
+<p align="center">
+  <img src="assets/adam-noisy-ill-conditioned.png" alt="Adam on an ill-conditioned noisy optimization landscape" width="60%">
+</p>
 
 Conceptually:
 
