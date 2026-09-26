@@ -134,6 +134,30 @@ It then evaluates the gradient there and corrects the update earlier.
 
 **Illustration:** Nesterov Momentum looks ahead along the accumulated direction, then uses the gradient at that future point to adjust the trajectory.
 
+### Quick numerical example
+
+Let \(J(\theta)=(\theta-6)^2\), with \(\theta_t=5\), previous velocity \(u_{t-1}=2\), \(\beta=0.9\), and \(\eta=0.1\).
+
+The momentum would first look ahead to:
+
+```math
+\theta_{\text{look}} = 5 + 0.9(2) = 6.8.
+```
+
+Since the optimum is at \(6\), this overshoots it. At the look-ahead point:
+
+```math
+\nabla J(6.8)=2(6.8-6)=1.6.
+```
+
+Nesterov uses this gradient to brake the motion:
+
+```math
+u_t = 0.9(2)-0.1(1.6)=1.64.
+```
+
+So instead of continuing with a momentum step of \(1.8\), the look-ahead gradient reduces it to \(1.64\): **look ahead → detect overshoot → brake**.
+
 ---
 
 ## 4. Adaptive Learning Rates
