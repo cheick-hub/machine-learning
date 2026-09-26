@@ -423,36 +423,20 @@ Adam does both.
 
 The main parameters are:
 
-- (eta): base learning rate;
-- (eta): momentum memory;
-- (ho): RMSProp squared-gradient memory;
-- (eta_1): Adam first-moment memory;
-- (eta_2): Adam second-moment memory;
-- (arepsilon): small numerical-stability constant.
+| Parameter | Meaning |
+| --- | --- |
+| $\eta$ | Base learning rate |
+| $\beta$ | Momentum memory |
+| $\rho$ | RMSProp squared-gradient memory |
+| $\beta_1$ | Adam first-moment memory |
+| $\beta_2$ | Adam second-moment memory |
+| $\varepsilon$ | Small numerical-stability constant |
 
 The central distinction is:
 
-```math
-\boxed{
-\text{Momentum changes how direction is accumulated}
-}
-```
-
-while:
-
-```math
-\boxed{
-\text{adaptive methods change how step size is scaled per parameter}
-}
-```
-
-and:
-
-```math
-\boxed{
-\text{Adam combines both mechanisms}
-}
-```
+- **Momentum** changes how the update direction is accumulated over time.
+- **Adaptive methods** change how the step size is scaled for each parameter.
+- **Adam** combines both mechanisms.
 
 Adaptive optimizers often make rapid practical progress, especially with noisy gradients and high-dimensional models.
 
