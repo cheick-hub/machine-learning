@@ -136,7 +136,7 @@ It then evaluates the gradient there and corrects the update earlier.
 
 ### Quick numerical example
 
-Let \(J(\theta)=(\theta-6)^2\), with \(\theta_t=5\), previous velocity \(u_{t-1}=2\), \(\beta=0.9\), and \(\eta=0.1\).
+Let \(J(\theta)=(\theta-6)^2\), with \(\theta_t=5\), previous velocity \(v_{t-1}=2\), \(\beta=0.9\), and \(\eta=0.1\).
 
 The momentum would first look ahead to:
 
