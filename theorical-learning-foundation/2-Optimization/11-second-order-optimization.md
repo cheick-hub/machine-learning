@@ -76,7 +76,9 @@ The quadratic term:
 
 models how the objective bends around the current point.
 
-![First-order vs second-order Taylor approximation](assets/second-order-taylor-comparison.png)
+<p align="center">
+  <img src="assets/second-order-taylor-comparison.png" alt="First-order vs second-order Taylor approximation" width="60%">
+</p>
 
 ---
 
