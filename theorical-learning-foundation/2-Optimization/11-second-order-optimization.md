@@ -87,34 +87,34 @@ models how the objective bends around the current point.
 Define the quadratic model:
 
 ```math
-q(\Delta)
+q(p)
 =
 J(\theta)
-+\nabla J(\theta)^\top\Delta
-+\frac12\Delta^\top H(\theta)\Delta.
++\nabla J(\theta)^\topp
++\frac12p^\top H(\theta)p.
 ```
 
-Choose $\Delta$ to minimize this approximation.
+Choose $p$ to minimize this approximation.
 
-Differentiate with respect to $\Delta$:
+Differentiate with respect to $p$:
 
 ```math
-\nabla_\Delta q
+\nabla_p q
 =
-\nabla J(\theta)+H(\theta)\Delta.
+\nabla J(\theta)+H(\theta)p.
 ```
 
 Set it equal to zero:
 
 ```math
-H(\theta)\Delta=-\nabla J(\theta).
+H(\theta)p=-\nabla J(\theta).
 ```
 
 If $H(\theta)$ is invertible:
 
 ```math
 \boxed{
-\Delta=-H(\theta)^{-1}\nabla J(\theta)
+p=-H(\theta)^{-1}\nabla J(\theta)
 }
 ```
 
@@ -347,7 +347,7 @@ The Newton direction is:
 d_N=-H^{-1}\nabla J.
 ```
 
-A descent direction must satisfy:
+A descent direction must satisfy (this condition comes from the descent theorem):
 
 ```math
 \nabla J^\top d_N<0.
