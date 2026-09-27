@@ -90,7 +90,7 @@ Define the quadratic model:
 q(p)
 =
 J(\theta)
-+\nabla J(\theta)^\topp
++\nabla J(\theta)^\top p
 +\frac12p^\top H(\theta)p.
 ```
 
