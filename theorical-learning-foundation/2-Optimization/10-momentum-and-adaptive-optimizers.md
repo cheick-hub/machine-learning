@@ -141,22 +141,22 @@ Let \(J(\theta)=(\theta-6)^2\), with \(\theta_t=5\), previous velocity \(v_{t-1}
 The momentum would first look ahead to:
 
 ```math
-\theta_{\text{look}} = 5 + 0.9(2) = 6.8.
+\theta_{\text{look}} = 5 - 0.1(0.9)(2) = 4.82.
 ```
 
-Since the optimum is at \(6\), this overshoots it. At the look-ahead point:
+The look-ahead point is below the optimum at \(6\). At that point:
 
 ```math
-\nabla J(6.8)=2(6.8-6)=1.6.
+\nabla J(4.82)=2(4.82-6)=-2.36.
 ```
 
-Nesterov uses this gradient to brake the motion:
+Nesterov incorporates this gradient into the velocity:
 
 ```math
-u_t = 0.9(2)-0.1(1.6)=1.64.
+v_t = 0.9(2)-2.36=-0.56.
 ```
 
-So instead of continuing with a momentum step of \(1.8\), the look-ahead gradient reduces it to \(1.64\): **look ahead → detect overshoot → brake**.
+The parameter update is \(\theta_{t+1}=5-0.1(-0.56)=5.056\): **look ahead → measure the gradient → correct the update**.
 
 ---
 
@@ -380,9 +380,9 @@ z_t
 
 Recent values receive more weight, while older values decay exponentially.
 
-A larger (eta) creates longer memory.
+A larger \(\beta\) creates longer memory.
 
-A smaller (eta) reacts more quickly to recent changes.
+A smaller \(\beta\) reacts more quickly to recent changes.
 
 This mechanism lets optimizers smooth noisy gradient information without storing the entire optimization history.
 
