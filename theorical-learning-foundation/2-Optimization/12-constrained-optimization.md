@@ -196,6 +196,10 @@ This is the main geometric meaning of the Lagrange multiplier condition.
 
 ---
 
+<p align="center">
+  <img src="assets/lagrange-geometric-meaning.png" alt="Geometric meaning of Lagrange multipliers" width="60%">
+</p>
+
 ## 5. Equality-Constrained Example
 
 Consider:
@@ -333,6 +337,10 @@ The constraint may be preventing the optimizer from moving toward a better uncon
 This distinction is central to the KKT conditions.
 
 ---
+
+<p align="center">
+  <img src="assets/inequality-constraints-feasible-region.png" alt="Inequality constraints, feasible region, active and inactive constraints" width="60%">
+</p>
 
 ## 7. Lagrangian with Equality and Inequality Constraints
 
@@ -533,6 +541,10 @@ constraint forces
 This is the constrained version of the zero-gradient condition.
 
 ---
+
+<p align="center">
+  <img src="assets/kkt-conditions.png" alt="KKT conditions for constrained optimization" width="60%">
+</p>
 
 ## 9. KKT Intuition in Four Questions
 
