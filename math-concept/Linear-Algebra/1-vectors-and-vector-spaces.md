@@ -147,6 +147,10 @@ means that (v_2) introduces no new direction.
 
 **Illustration:** If one feature is an exact linear combination of other features, it adds no new linear information and contributes to rank deficiency.
 
+<p align="center">
+  <img src="assets/linear_independence_vs_dependence.png" width="60%" alt="Linear independence versus linear dependence">
+</p>
+
 ---
 
 ## 5. Basis and Dimension
@@ -217,6 +221,10 @@ S=
 is a one-dimensional line through the origin.
 
 Subspaces appear throughout Machine Learning: linear regression works with column spaces, PCA searches for lower-dimensional subspaces, and SVD identifies important directions inside a matrix.
+
+<p align="center">
+  <img src="assets/subspaces_lines_through_the_origin.png" width="60%" alt="Linear subspace as a line through the origin">
+</p>
 
 ---
 
