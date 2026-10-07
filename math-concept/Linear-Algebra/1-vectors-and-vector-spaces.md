@@ -35,13 +35,13 @@ x_d
 
 A vector can be interpreted both as a list of values and as a point or direction in a geometric space.
 
-In Machine Learning, one observation with $d$ numerical features is commonly represented as:
+In Machine Learning, one observation with \(d\) numerical features is commonly represented as:
 
 ```math
 x \in \mathbb{R}^d
 ```
 
-**Illustration:** A dataset with 100 features represents each observation as a point in $\mathbb{R}^{100}$.
+**Illustration:** A dataset with 100 features represents each observation as a point in \(\mathbb{R}^{100}\).
 
 ---
 
@@ -62,7 +62,7 @@ x_d+y_d
 
 ### Scalar Multiplication
 
-For a scalar $\alpha$:
+For a scalar \(\alpha\):
 
 ```math
 \alpha x=
@@ -91,7 +91,7 @@ where both the parameters and the gradient are vectors.
 
 ## 3. Linear Combinations and Span
 
-Given vectors $v_1,\ldots,v_k$, a **linear combination** is:
+Given vectors \(v_1,\ldots,v_k\), a **linear combination** is:
 
 ```math
 \alpha_1v_1+\alpha_2v_2+\cdots+\alpha_kv_k
@@ -109,7 +109,7 @@ The **span** contains every vector that can be generated from these combinations
 \right\}
 ```
 
-A single non-zero vector spans a line through the origin. Two independent vectors in $\mathbb{R}^2$ span the whole plane.
+A single non-zero vector spans a line through the origin. Two independent vectors in \(\mathbb{R}^2\) span the whole plane.
 
 In Machine Learning, the expression:
 
@@ -117,13 +117,13 @@ In Machine Learning, the expression:
 Xw
 ```
 
-is a linear combination of the columns of $X$. Therefore every prediction produced by a linear model belongs to the span of those columns.
+is a linear combination of the columns of \(X\). Therefore every prediction produced by a linear model belongs to the span of those columns.
 
 ---
 
 ## 4. Linear Independence
 
-Vectors $v_1,\ldots,v_k$ are **linearly independent** when:
+Vectors \(v_1,\ldots,v_k\) are **linearly independent** when:
 
 ```math
 \alpha_1v_1+\cdots+\alpha_kv_k=0
@@ -143,7 +143,7 @@ For example:
 v_2=2v_1
 ```
 
-means that $v_2$ introduces no new direction.
+means that \(v_2\) introduces no new direction.
 
 **Illustration:** If one feature is an exact linear combination of other features, it adds no new linear information and contributes to rank deficiency.
 
@@ -160,7 +160,7 @@ A **basis** of a vector space is a set of vectors that:
 1. is linearly independent;
 2. spans the entire space.
 
-The standard basis of $\mathbb{R}^2$ is:
+The standard basis of \(\mathbb{R}^2\) is:
 
 ```math
 e_1=
@@ -252,4 +252,4 @@ For a dataset:
 X\in\mathbb{R}^{n\times d}
 ```
 
-each row is an observation in $\mathbb{R}^d$, while dependencies between the columns determine how many genuinely independent directions exist in the data.
+each row is an observation in \(\mathbb{R}^d\), while dependencies between the columns determine how many genuinely independent directions exist in the data.
