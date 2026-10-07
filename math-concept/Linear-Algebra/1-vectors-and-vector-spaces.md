@@ -91,7 +91,7 @@ where both the parameters and the gradient are vectors.
 
 ## 3. Linear Combinations and Span
 
-Given vectors (v_1,\ldots,v_k), a **linear combination** is:
+Given vectors $v_1,\ldots,v_k$, a **linear combination** is:
 
 ```math
 \alpha_1v_1+\alpha_2v_2+\cdots+\alpha_kv_k
@@ -123,7 +123,7 @@ is a linear combination of the columns of $X$. Therefore every prediction produc
 
 ## 4. Linear Independence
 
-Vectors (v_1,\ldots,v_k) are **linearly independent** when:
+Vectors $v_1,\ldots,v_k$ are **linearly independent** when:
 
 ```math
 \alpha_1v_1+\cdots+\alpha_kv_k=0
