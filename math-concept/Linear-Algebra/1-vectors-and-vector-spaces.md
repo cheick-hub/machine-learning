@@ -100,7 +100,7 @@ Given vectors $v_1,\ldots,v_k$, a **linear combination** is:
 The **span** contains every vector that can be generated from these combinations:
 
 ```math
-\operatorname{span}(v_1,\ldots,v_k)
+\mathrm{span}(v_1,\ldots,v_k)
 =
 \left\{
 \sum_{i=1}^{k}\alpha_i v_i
@@ -208,7 +208,7 @@ For example:
 
 ```math
 S=
-\operatorname{span}
+\mathrm{span}
 \left(
 \begin{bmatrix}
 1\\
