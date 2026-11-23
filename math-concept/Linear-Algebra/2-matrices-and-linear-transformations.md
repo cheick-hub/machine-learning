@@ -101,6 +101,12 @@ Any matrix $A\in\mathbb{R}^{m\times n}$ defines such a transformation:
 T(x)=Ax
 ```
 
+**Input, transformation, and output:**
+
+- **Input vector:** Its coordinates tell us how much of each basis vector contributes to its position.
+- **Transformation matrix:** Defines where each basis vector is mapped.
+- **Output vector:** Gives the coordinates of the transformed vector in the output space.
+
 **Geometric intuition:** **A matrix tells us how each basis direction is transformed, and the final vector is the sum of those transformed directions weighted by the input coordinates.** In the standard basis, column $i$ of $A$ is the image of $e_i$: $Ae_i=a_i$.
 
 **Example:** With $A=\begin{bmatrix}2&0\\0&3\end{bmatrix}$, the basis vectors become $Ae_1=(2,0)^\top$ and $Ae_2=(0,3)^\top$. Thus $A(1,2)^\top=1(2,0)^\top+2(0,3)^\top=(2,6)^\top$.
