@@ -33,6 +33,8 @@ X\in\mathbb{R}^{N\times d}
 
 where $N$ is the number of observations and $d$ is the number of features. Rows represent observations; columns represent features.
 
+**Example:** $X=\begin{bmatrix}170&65\\180&80\\160&55\end{bmatrix}$ represents 3 observations with 2 features each.
+
 ---
 
 ## 2. Matrix Operations
@@ -65,6 +67,8 @@ The result is therefore a **linear combination of the columns** of $A$:
 Ax\in\mathrm{span}(a_1,\ldots,a_n)
 ```
 
+**Example:** For $A=\begin{bmatrix}1&3\\2&4\end{bmatrix}$ and $x=\begin{bmatrix}2\\5\end{bmatrix}$, we obtain $Ax=2\begin{bmatrix}1\\2\end{bmatrix}+5\begin{bmatrix}3\\4\end{bmatrix}=\begin{bmatrix}17\\24\end{bmatrix}$.
+
 **Illustration:** Linear regression computes $\hat y=Xw$, a weighted combination of the feature columns.
 
 ### Matrix-Matrix Multiplication
@@ -78,6 +82,8 @@ AB\in\mathbb{R}^{m\times p},
 ```
 
 Each output entry is the dot product of a row of $A$ and a column of $B$.
+
+**Example:** If $A=\begin{bmatrix}1&2\end{bmatrix}$ and $B=\begin{bmatrix}3\\4\end{bmatrix}$, then $AB=1(3)+2(4)=11$.
 
 ---
 
@@ -94,6 +100,10 @@ Any matrix $A\in\mathbb{R}^{m\times n}$ defines such a transformation:
 ```math
 T(x)=Ax
 ```
+
+**Geometric intuition:** **A matrix tells us how each basis direction is transformed, and the final vector is the sum of those transformed directions weighted by the input coordinates.** In the standard basis, column $i$ of $A$ is the image of $e_i$: $Ae_i=a_i$.
+
+**Example:** With $A=\begin{bmatrix}2&0\\0&3\end{bmatrix}$, the basis vectors become $Ae_1=(2,0)^\top$ and $Ae_2=(0,3)^\top$. Thus $A(1,2)^\top=1(2,0)^\top+2(0,3)^\top=(2,6)^\top$.
 
 Geometrically, matrices can transform vectors through:
 
@@ -136,7 +146,7 @@ Therefore, multiplying matrices corresponds to composing transformations.
 AB\neq BA
 ```
 
-For instance, rotating and then scaling along one coordinate axis generally differs from scaling first and then rotating.
+**Example:** Let $A=\begin{bmatrix}2&0\\0&1\end{bmatrix}$ scale the horizontal coordinate and $B=\begin{bmatrix}0&-1\\1&0\end{bmatrix}$ rotate by $90^\circ$. For $x=(1,0)^\top$, $BAx=(0,2)^\top$, whereas $ABx=(0,1)^\top$.
 
 ---
 
@@ -149,6 +159,8 @@ For instance, rotating and then scaling along one coordinate axis generally diff
 | **Transpose** $A^\top$ | $(A^\top)_{ij}=A_{ji}$ | Swaps rows and columns |
 | **Symmetric** $A$ | $A=A^\top$ | Important for covariance and eigendecomposition |
 | **Inverse** $A^{-1}$ | $A^{-1}A=I$ | Undoes an invertible transformation |
+
+**Example:** $D=\begin{bmatrix}2&0\\0&3\end{bmatrix}$ sends $(1,2)^\top$ to $(2,6)^\top$, while the identity matrix leaves $(1,2)^\top$ unchanged.
 
 Useful identities include:
 
@@ -182,6 +194,8 @@ T(x)=Wx+b
 
 which can translate the output away from the origin.
 
+**Example:** With $W=I_2$ and $b=(1,-1)^\top$, the affine mapping sends $x=(2,3)^\top$ to $Wx+b=(3,2)^\top$. In particular, the origin maps to $b$, not to zero.
+
 Neural-network layers typically combine an affine transformation with a nonlinear activation:
 
 ```math
@@ -213,5 +227,7 @@ Affine transformations + nonlinear activations
    ↓
 Neural network layers
 ```
+
+**Example:** An input $x\in\mathbb{R}^{100}$ can be mapped by $W_1\in\mathbb{R}^{64\times100}$ into a 64-dimensional representation, then by $W_2\in\mathbb{R}^{10\times64}$ into a 10-dimensional output.
 
 The key connection is that **matrices encode transformations**, and their multiplication lets Machine Learning models combine those transformations into more complex computations.
