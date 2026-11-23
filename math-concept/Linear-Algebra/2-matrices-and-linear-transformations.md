@@ -33,7 +33,15 @@ X\in\mathbb{R}^{N\times d}
 
 where $N$ is the number of observations and $d$ is the number of features. Rows represent observations; columns represent features.
 
-**Example:** $X=\begin{bmatrix}170&65\\180&80\\160&55\end{bmatrix}$ represents 3 observations with 2 features each.
+**Example:** The following matrix represents 3 observations with 2 features each:
+
+```math
+X=\begin{bmatrix}
+170 & 65 \\
+180 & 80 \\
+160 & 55
+\end{bmatrix}
+```
 
 ---
 
@@ -67,7 +75,21 @@ The result is therefore a **linear combination of the columns** of $A$:
 Ax\in\mathrm{span}(a_1,\ldots,a_n)
 ```
 
-**Example:** For $A=\begin{bmatrix}1&3\\2&4\end{bmatrix}$ and $x=\begin{bmatrix}2\\5\end{bmatrix}$, we obtain $Ax=2\begin{bmatrix}1\\2\end{bmatrix}+5\begin{bmatrix}3\\4\end{bmatrix}=\begin{bmatrix}17\\24\end{bmatrix}$.
+**Example:** For
+
+```math
+A=\begin{bmatrix}1&3\\2&4\end{bmatrix},
+\qquad
+x=\begin{bmatrix}2\\5\end{bmatrix}
+```
+
+we obtain:
+
+```math
+Ax=2\begin{bmatrix}1\\2\end{bmatrix}
++5\begin{bmatrix}3\\4\end{bmatrix}
+=\begin{bmatrix}17\\24\end{bmatrix}
+```
 
 **Illustration:** Linear regression computes $\hat y=Xw$, a weighted combination of the feature columns.
 
@@ -83,7 +105,15 @@ AB\in\mathbb{R}^{m\times p},
 
 Each output entry is the dot product of a row of $A$ and a column of $B$.
 
-**Example:** If $A=\begin{bmatrix}1&2\end{bmatrix}$ and $B=\begin{bmatrix}3\\4\end{bmatrix}$, then $AB=1(3)+2(4)=11$.
+**Example:** If
+
+```math
+A=\begin{bmatrix}1&2\end{bmatrix},
+\qquad
+B=\begin{bmatrix}3\\4\end{bmatrix}
+```
+
+then $AB=1(3)+2(4)=11.
 
 ---
 
@@ -111,7 +141,19 @@ T(x)=Ax
 
 **Geometric intuition:** **A matrix tells us how each basis direction is transformed, and the final vector is the sum of those transformed directions weighted by the input coordinates.** In the standard basis, column $i$ of $A$ is the image of $e_i$: $Ae_i=a_i$.
 
-**Example:** With $A=\begin{bmatrix}2&0\\0&3\end{bmatrix}$, the basis vectors become $Ae_1=(2,0)^\top$ and $Ae_2=(0,3)^\top$. Thus $A(1,2)^\top=1(2,0)^\top+2(0,3)^\top=(2,6)^\top$.
+**Example:** With
+
+```math
+A=\begin{bmatrix}2&0\\0&3\end{bmatrix}
+```
+
+the basis vectors become $Ae_1=(2,0)^\top$ and $Ae_2=(0,3)^\top$. Thus:
+
+```math
+A(1,2)^\top
+=1(2,0)^\top+2(0,3)^\top
+=(2,6)^\top
+```
 
 Geometrically, matrices can transform vectors through:
 
@@ -154,7 +196,21 @@ Therefore, multiplying matrices corresponds to composing transformations.
 AB\neq BA
 ```
 
-**Example:** Let $A=\begin{bmatrix}2&0\\0&1\end{bmatrix}$ scale the horizontal coordinate and $B=\begin{bmatrix}0&-1\\1&0\end{bmatrix}$ rotate by $90^\circ$. For $x=(1,0)^\top$, $BAx=(0,2)^\top$, whereas $ABx=(0,1)^\top$.
+**Example:** Let
+
+```math
+A=\begin{bmatrix}2&0\\0&1\end{bmatrix},
+\qquad
+B=\begin{bmatrix}0&-1\\1&0\end{bmatrix}
+```
+
+where $A$ scales the horizontal coordinate and $B$ rotates by $90^\circ$. For $x=(1,0)^\top$, we obtain:
+
+```math
+BAx=(0,2)^\top,
+\qquad
+ABx=(0,1)^\top
+```
 
 ---
 
@@ -168,7 +224,13 @@ AB\neq BA
 | **Symmetric** $A$ | $A=A^\top$ | Important for covariance and eigendecomposition |
 | **Inverse** $A^{-1}$ | $A^{-1}A=I$ | Undoes an invertible transformation |
 
-**Example:** $D=\begin{bmatrix}2&0\\0&3\end{bmatrix}$ sends $(1,2)^\top$ to $(2,6)^\top$, while the identity matrix leaves $(1,2)^\top$ unchanged.
+**Example:** The diagonal matrix
+
+```math
+D=\begin{bmatrix}2&0\\0&3\end{bmatrix}
+```
+
+sends $(1,2)^\top$ to $(2,6)^\top$, while the identity matrix leaves $(1,2)^\top$ unchanged.
 
 Useful identities include:
 
