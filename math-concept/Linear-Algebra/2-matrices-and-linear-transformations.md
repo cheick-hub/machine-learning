@@ -107,6 +107,8 @@ T(x)=Ax
 - **Transformation matrix:** Defines where each basis vector is mapped.
 - **Output vector:** Gives the coordinates of the transformed vector in the output space.
 
+**Each column represents the transformation of a basis vector, and the final result is the weighted sum of those transformed basis vectors.**
+
 **Geometric intuition:** **A matrix tells us how each basis direction is transformed, and the final vector is the sum of those transformed directions weighted by the input coordinates.** In the standard basis, column $i$ of $A$ is the image of $e_i$: $Ae_i=a_i$.
 
 **Example:** With $A=\begin{bmatrix}2&0\\0&3\end{bmatrix}$, the basis vectors become $Ae_1=(2,0)^\top$ and $Ae_2=(0,3)^\top$. Thus $A(1,2)^\top=1(2,0)^\top+2(0,3)^\top=(2,6)^\top$.
