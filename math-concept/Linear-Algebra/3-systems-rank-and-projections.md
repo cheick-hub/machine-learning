@@ -308,7 +308,52 @@ X(w_1-w_2)=
 
 **Context:** Rank-nullity tells us how many independent input directions affect the output (the rank) and how many produce no change in the output (the nullity). If the nullity is greater than zero, we can change a solution along those null-space directions without changing $Ax$, so a consistent system has multiple solutions.
 
-**Example:** A $3\times2$ matrix with rank $1$ has nullity $2-1=1$. If it is consistent, any solution can be shifted along one independent null-space direction without changing the output. In an underdetermined system ($m<n$), the null space is necessarily nontrivial.
+### Worked Example: Infinitely Many Solutions
+
+Consider a consistent system with three equations and two unknowns:
+
+```math
+A=
+\begin{bmatrix}
+1&2\\
+2&4\\
+3&6
+\end{bmatrix},
+\qquad
+b=
+\begin{bmatrix}
+1\\2\\3
+\end{bmatrix}
+```
+
+The second column is twice the first, so $\mathrm{rank}(A)=1$. As there are two input variables, rank-nullity gives:
+
+```math
+\dim(\mathrm{Null}(A))=2-1=1
+```
+
+A particular solution is $x_p=(1,0)^\top$, since $Ax_p=b$. A null-space direction is $v=(-2,1)^\top$, since $Av=0$.
+
+Consequently, **every solution** is:
+
+```math
+x=x_p+tv
+=
+\begin{bmatrix}
+1-2t\\t
+\end{bmatrix},
+\qquad t\in\mathbb{R}
+```
+
+To verify this, substitute into the first equation:
+
+```math
+x_1+2x_2=(1-2t)+2t=1
+```
+
+The other equations are multiples of the first, so they are also satisfied. For example, $t=0$ gives $(1,0)^\top$, while $t=1$ gives $(-1,1)^\top$; both produce the same output $b$.
+
+**Interpretation:** The rank counts one direction that changes the output, while the one-dimensional null space represents a free parameter direction that leaves the output unchanged.
 
 For $A\in\mathbb{R}^{m\times n}$:
 
@@ -344,7 +389,64 @@ Therefore, **provided the system has at least one solution**, a trivial null spa
 
 **Context:** Exact reconstruction is not always possible. When a target lies outside the column space, we instead look for the reachable point with the smallest Euclidean distance to it. The shortest residual is perpendicular to the subspace.
 
-**Example:** Project $b=(3,2)^\top$ onto the horizontal axis, represented by $A=(1,0)^\top$. The closest output is $\hat b=(3,0)^\top$ and the residual is $r=(0,2)^\top$. It is perpendicular to the column: $A^\top r=0$.
+### Worked Example: Projection Onto a Line
+
+Consider a target vector $b=(3,1)^\top$ and a matrix containing one column:
+
+```math
+A=
+\begin{bmatrix}
+1\\1
+\end{bmatrix},
+\qquad
+b=
+\begin{bmatrix}
+3\\1
+\end{bmatrix}
+```
+
+The column space of $A$ is the line $y=x$. Every possible output has the form:
+
+```math
+Ax=x\begin{bmatrix}1\\1\end{bmatrix}
+=
+\begin{bmatrix}x\\x\end{bmatrix}
+```
+
+Since $b$ is not on this line, $Ax=b$ has no exact solution. We find the closest point by minimizing:
+
+```math
+J(x)=\|Ax-b\|_2^2=(x-3)^2+(x-1)^2
+```
+
+Differentiate and set the derivative to zero:
+
+```math
+J'(x)=2(x-3)+2(x-1)=4x-8=0
+\quad\Longrightarrow\quad
+\hat x=2
+```
+
+The projected vector and residual are:
+
+```math
+\hat b=A\hat x=
+\begin{bmatrix}2\\2\end{bmatrix},
+\qquad
+r=b-\hat b=
+\begin{bmatrix}1\\-1\end{bmatrix}
+```
+
+Finally, verify orthogonality:
+
+```math
+A^\top r=
+\begin{bmatrix}1&1\end{bmatrix}
+\begin{bmatrix}1\\-1\end{bmatrix}
+=0
+```
+
+**Interpretation:** $(2,2)^\top$ is the closest point to $(3,1)^\top$ on the line $y=x$. The residual $(1,-1)^\top$ points perpendicular to that line, and its Euclidean length is $\sqrt{2}$.
 
 If $b\notin\mathrm{Col}(A)$, there is no exact solution to $Ax=b$. Instead, we find the closest vector in the column space:
 
