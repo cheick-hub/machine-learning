@@ -424,70 +424,7 @@ The **projected output $\hat b$ is unique**, even when several values of $\hat x
   <img src="assets/orthogonal_projection.svg" width="85%" alt="Target b decomposed into its projection onto the column space and its perpendicular residual">
 </p>
 
-### 5.2 Worked Example: Projection Onto a Line
-
-Consider:
-
-```math
-A=\begin{bmatrix}1\\1\end{bmatrix},
-\qquad
-b=\begin{bmatrix}3\\1\end{bmatrix}
-```
-
-The column space is the line $\mathrm{span}((1,1)^\top)$. Every reachable output has the form:
-
-```math
-Ax=\begin{bmatrix}x\\x\end{bmatrix}
-```
-
-To find the closest point, minimize:
-
-```math
-J(x)=\|Ax-b\|_2^2=(x-3)^2+(x-1)^2
-```
-
-Differentiating gives:
-
-```math
-J'(x)=2(x-3)+2(x-1)=4x-8
-\quad\Longrightarrow\quad
-\hat x=2
-```
-
-Therefore, the projection and residual are:
-
-```math
-\hat b=A\hat x=\begin{bmatrix}2\\2\end{bmatrix},
-\qquad
-r=b-\hat b=\begin{bmatrix}1\\-1\end{bmatrix}
-```
-
-Finally, verify orthogonality:
-
-```math
-A^\top r=
-\begin{bmatrix}1&1\end{bmatrix}
-\begin{bmatrix}1\\-1\end{bmatrix}
-=0
-```
-
-The closest point on the line is $(2,2)$, and the remaining error $(1,-1)$ is perpendicular to that line.
-
----
-
-### 5.3 Least Squares and Normal Equations
-
-**Example:** To fit one constant value to observations $b=(1,2,4)^\top$, choose $A=(1,1,1)^\top$. Then
-
-```math
-A^\top A\hat x=A^\top b
-\quad\Longrightarrow\quad
-3\hat x=7
-\quad\Longrightarrow\quad
-\hat x=\frac73
-```
-
-Thus least squares returns the mean of the three observations, and the residuals sum to zero.
+### 5.2 Least Squares and Normal Equations
 
 The **least-squares objective** is:
 
@@ -512,6 +449,8 @@ Setting the gradient to zero yields the **normal equations**:
 \boxed{A^\top A\hat x=A^\top b}
 ```
 
+Equivalently, $A^\top(b-A\hat x)=0$: the residual is orthogonal to every column of $A$.
+
 If $A$ has full column rank, the solution is unique:
 
 ```math
@@ -520,7 +459,50 @@ If $A$ has full column rank, the solution is unique:
 
 For rank-deficient matrices, minimizers still exist but may not be unique. In practice, numerical solvers using **QR decomposition or SVD** are preferred over forming the inverse explicitly.
 
-**Illustration:** The normal equations are the algebraic form of the geometric condition $A^\top r=0$.
+### 5.3 Worked Example: Projection Onto a Line
+
+Consider:
+
+```math
+A=\begin{bmatrix}1\\1\end{bmatrix},
+\qquad
+b=\begin{bmatrix}3\\1\end{bmatrix}
+```
+
+The column space is the line $\mathrm{span}((1,1)^\top)$. Every reachable output has the form:
+
+```math
+Ax=\begin{bmatrix}x\\x\end{bmatrix}
+```
+
+Applying the normal equations:
+
+```math
+A^\top A\hat x=A^\top b
+\quad\Longrightarrow\quad
+2\hat x=4
+\quad\Longrightarrow\quad
+\hat x=2
+```
+
+Therefore, the projection and residual are:
+
+```math
+\hat b=A\hat x=\begin{bmatrix}2\\2\end{bmatrix},
+\qquad
+r=b-\hat b=\begin{bmatrix}1\\-1\end{bmatrix}
+```
+
+Finally, verify orthogonality:
+
+```math
+A^\top r=
+\begin{bmatrix}1&1\end{bmatrix}
+\begin{bmatrix}1\\-1\end{bmatrix}
+=0
+```
+
+The closest point on the line is $(2,2)$, and the remaining error $(1,-1)$ is perpendicular to that line.
 
 ---
 
