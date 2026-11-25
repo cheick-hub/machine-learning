@@ -103,43 +103,204 @@ The second column is twice the first, so it adds no independent direction.
 
 **Context:** These two spaces describe different aspects of a transformation: the column space consists of reachable **outputs** in $\mathbb{R}^m$, while the null space consists of **inputs** in $\mathbb{R}^n$ that are sent to zero.
 
-**Example:** For the matrix below, $Ax=0$ reduces to $x_1+2x_2=0$. Every solution is $x=t(-2,1)^\top$. Meanwhile, the output $Ax=(x_1+2x_2)(1,2)^\top$ always lies on the line spanned by $(1,2)^\top$.
+### 3.1 Computing the Null Space
 
-The column space describes possible **outputs**:
-
-```math
-\mathrm{Col}(A)=\{Ax:x\in\mathbb{R}^{n}\}
-```
-
-The **null space** of a matrix $A$ is the set of all vectors mapped to the zero vector by $A$:
-
-```math
-\mathrm{Null}(A)=\{x\in\mathbb{R}^n:Ax=0\}
-```
-
-It is **trivial** when it contains only the zero vector $\{0\}$, and **non-trivial** when it contains at least one non-zero vector. Non-trivial null-space directions can be added to an input without changing its output.
-
-For example:
+Consider:
 
 ```math
 A=
 \begin{bmatrix}
 1&2\\
 2&4
+\end{bmatrix},
+\qquad
+x=
+\begin{bmatrix}
+x_1\\x_2
 \end{bmatrix}
-\quad\Longrightarrow\quad
-\mathrm{Null}(A)=
-\mathrm{span}
-\left(
-\begin{bmatrix}-2\\1\end{bmatrix}
-\right)
 ```
 
-<p align="center">
-  <img src="assets/column_null_spaces.svg" width="85%" alt="Geometric comparison of a matrix column space and null space">
-</p>
+We want all vectors $x$ satisfying $Ax=0$. Expanding the matrix multiplication:
 
-**Illustration:** If $Xw_1=Xw_2$, then $w_1-w_2\in\mathrm{Null}(X)$: two coefficient vectors produce the same predictions.
+```math
+\begin{bmatrix}
+1&2\\
+2&4
+\end{bmatrix}
+\begin{bmatrix}
+x_1\\x_2
+\end{bmatrix}
+=
+\begin{bmatrix}
+x_1+2x_2\\
+2x_1+4x_2
+\end{bmatrix}
+=
+\begin{bmatrix}
+0\\0
+\end{bmatrix}
+```
+
+This produces the system:
+
+```math
+\begin{cases}
+x_1+2x_2=0\\
+2x_1+4x_2=0
+\end{cases}
+```
+
+The second equation is twice the first, so only one independent constraint remains:
+
+```math
+x_1=-2x_2
+```
+
+Let $x_2=t$, where $t\in\mathbb{R}$. Then $x_1=-2t$, and every solution is:
+
+```math
+x=
+\begin{bmatrix}
+-2t\\t
+\end{bmatrix}
+=
+t\begin{bmatrix}
+-2\\1
+\end{bmatrix}
+```
+
+Therefore:
+
+```math
+\boxed{
+\mathrm{Null}(A)=
+\left\{t\begin{bmatrix}-2\\1\end{bmatrix}:t\in\mathbb{R}\right\}
+=
+\mathrm{span}\left(
+\begin{bmatrix}-2\\1\end{bmatrix}
+\right)
+}
+```
+
+The null space is **non-trivial** because it contains nonzero vectors; the vector $(-2,1)^\top$ is a direction that the transformation sends to zero.
+
+### 3.2 Computing the Column Space
+
+For the same matrix, its columns are:
+
+```math
+a_1=\begin{bmatrix}1\\2\end{bmatrix},
+\qquad
+a_2=\begin{bmatrix}2\\4\end{bmatrix}
+=2a_1
+```
+
+Every output can therefore be expanded as:
+
+```math
+Ax
+=
+x_1\begin{bmatrix}1\\2\end{bmatrix}
++
+x_2\begin{bmatrix}2\\4\end{bmatrix}
+=
+(x_1+2x_2)\begin{bmatrix}1\\2\end{bmatrix}
+```
+
+Since $x_1+2x_2$ can be any real number $s$, the set of possible outputs is:
+
+```math
+\boxed{
+\mathrm{Col}(A)
+=
+\left\{s\begin{bmatrix}1\\2\end{bmatrix}:s\in\mathbb{R}\right\}
+=
+\mathrm{span}\left(
+\begin{bmatrix}1\\2\end{bmatrix}
+\right)
+}
+```
+
+Hence both spaces are one-dimensional, but they answer different questions: the **column space** describes outputs that can be produced, while the **null space** describes inputs that produce zero.
+
+### 3.3 ML Interpretation: Different Weights, Same Predictions
+
+Suppose a feature matrix $X$ and two parameter vectors $w_1,w_2$ produce identical predictions:
+
+```math
+Xw_1=Xw_2
+```
+
+Subtracting both sides gives:
+
+```math
+Xw_1-Xw_2=0
+\quad\Longrightarrow\quad
+X(w_1-w_2)=0
+```
+
+By definition of the null space:
+
+```math
+\boxed{w_1-w_2\in\mathrm{Null}(X)}
+```
+
+For a concrete example, reuse:
+
+```math
+X=
+\begin{bmatrix}
+1&2\\
+2&4
+\end{bmatrix},
+\qquad
+w_1=\begin{bmatrix}3\\1\end{bmatrix},
+\qquad
+w_2=\begin{bmatrix}1\\2\end{bmatrix}
+```
+
+Compute both prediction vectors:
+
+```math
+Xw_1=
+\begin{bmatrix}
+1(3)+2(1)\\
+2(3)+4(1)
+\end{bmatrix}
+=
+\begin{bmatrix}5\\10\end{bmatrix}
+```
+
+```math
+Xw_2=
+\begin{bmatrix}
+1(1)+2(2)\\
+2(1)+4(2)
+\end{bmatrix}
+=
+\begin{bmatrix}5\\10\end{bmatrix}
+```
+
+Their difference is:
+
+```math
+w_1-w_2=
+\begin{bmatrix}2\\-1\end{bmatrix}
+=-\begin{bmatrix}-2\\1\end{bmatrix}
+\in\mathrm{Null}(X)
+```
+
+And multiplying confirms it:
+
+```math
+X(w_1-w_2)=
+\begin{bmatrix}1&2\\2&4\end{bmatrix}
+\begin{bmatrix}2\\-1\end{bmatrix}
+=
+\begin{bmatrix}0\\0\end{bmatrix}
+```
+
+**Illustration:** Different parameter vectors may produce exactly the same predictions when the design matrix has a non-trivial null space. In this case the coefficients are not uniquely identifiable from the predictions alone.
 
 ---
 
