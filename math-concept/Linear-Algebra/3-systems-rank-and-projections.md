@@ -385,7 +385,7 @@ Therefore, **provided the system has at least one solution**, a trivial null spa
 
 ---
 
-## 5. Orthogonal Projections
+## 5. Orthogonal Projections and Least Squares
 
 **Context:** A linear transformation $A$ can only produce outputs inside its column space $\mathrm{Col}(A)$. If the target $b$ is outside that subspace, no input $x$ satisfies $Ax=b$ exactly. An **orthogonal projection** finds the reachable output closest to $b$ in Euclidean distance.
 
@@ -475,9 +475,7 @@ The closest point on the line is $(2,2)$, and the remaining error $(1,-1)$ is pe
 
 ---
 
-## 6. Least Squares and Normal Equations
-
-**Context:** Least squares translates the geometric projection problem into minimization of squared residuals. Setting the gradient of this quadratic objective to zero yields the normal equations, which are exactly the perpendicular-residual condition.
+### 5.3 Least Squares and Normal Equations
 
 **Example:** To fit one constant value to observations $b=(1,2,4)^\top$, choose $A=(1,1,1)^\top$. Then
 
@@ -526,7 +524,7 @@ For rank-deficient matrices, minimizers still exist but may not be unique. In pr
 
 ---
 
-## 7. Connection to Linear Regression
+## 6. Connection to Linear Regression
 
 **Context:** A linear regression model cannot predict every arbitrary vector: all its fitted values lie in the column space of $X$. Training finds the closest point in that space to the target vector $y$.
 
@@ -550,7 +548,7 @@ If the columns of $X$ are linearly dependent, the coefficient vector may not be 
 
 ---
 
-## 8. Conceptual Hierarchy
+## 7. Conceptual Hierarchy
 
 **Context:** The main progression is from **exact solvability** to **best approximation**. Rank and the null space describe the available directions and solution uniqueness; projection and least squares handle inconsistent systems.
 
