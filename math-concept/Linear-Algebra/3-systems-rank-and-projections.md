@@ -391,35 +391,17 @@ Therefore, **provided the system has at least one solution**, a trivial null spa
 
 ### Worked Example: Projection Onto a Line
 
-Consider a target vector $b=(3,1)^\top$ and a matrix containing one column:
-
 ```math
-A=
-\begin{bmatrix}
-1\\1
-\end{bmatrix},
+A=\begin{bmatrix}1\\1\end{bmatrix},
 \qquad
-b=
-\begin{bmatrix}
-3\\1
-\end{bmatrix}
+b=\begin{bmatrix}3\\1\end{bmatrix}
 ```
 
-The column space of $A$ is the line $y=x$. Every possible output has the form:
-
 ```math
-Ax=x\begin{bmatrix}1\\1\end{bmatrix}
-=
-\begin{bmatrix}x\\x\end{bmatrix}
-```
-
-Since $b$ is not on this line, $Ax=b$ has no exact solution. We find the closest point by minimizing:
-
-```math
+Ax=\begin{bmatrix}x\\x\end{bmatrix},
+\qquad
 J(x)=\|Ax-b\|_2^2=(x-3)^2+(x-1)^2
 ```
-
-Differentiate and set the derivative to zero:
 
 ```math
 J'(x)=2(x-3)+2(x-1)=4x-8=0
@@ -427,17 +409,11 @@ J'(x)=2(x-3)+2(x-1)=4x-8=0
 \hat x=2
 ```
 
-The projected vector and residual are:
-
 ```math
-\hat b=A\hat x=
-\begin{bmatrix}2\\2\end{bmatrix},
+\hat b=A\hat x=\begin{bmatrix}2\\2\end{bmatrix},
 \qquad
-r=b-\hat b=
-\begin{bmatrix}1\\-1\end{bmatrix}
+r=b-\hat b=\begin{bmatrix}1\\-1\end{bmatrix}
 ```
-
-Finally, verify orthogonality:
 
 ```math
 A^\top r=
@@ -446,7 +422,6 @@ A^\top r=
 =0
 ```
 
-**Interpretation:** $(2,2)^\top$ is the closest point to $(3,1)^\top$ on the line $y=x$. The residual $(1,-1)^\top$ points perpendicular to that line, and its Euclidean length is $\sqrt{2}$.
 
 If $b\notin\mathrm{Col}(A)$, there is no exact solution to $Ax=b$. Instead, we find the closest vector in the column space:
 
