@@ -306,7 +306,7 @@ X(w_1-w_2)=
 
 ## 4. Rank-Nullity and Solution Uniqueness
 
-**Context:** Rank-nullity divides input dimensions into independent directions preserved by a transformation and directions lost to its null space. This explains why some systems have multiple parameter solutions.
+**Context:** Rank-nullity tells us how many independent input directions affect the output (the rank) and how many produce no change in the output (the nullity). If the nullity is greater than zero, we can change a solution along those null-space directions without changing $Ax$, so a consistent system has multiple solutions.
 
 **Example:** A $3\times2$ matrix with rank $1$ has nullity $2-1=1$. If it is consistent, any solution can be shifted along one independent null-space direction without changing the output. In an underdetermined system ($m<n$), the null space is necessarily nontrivial.
 
