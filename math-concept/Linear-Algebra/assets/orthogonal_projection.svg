@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="440" viewBox="0 0 840 440">
+<rect width="840" height="440" rx="14" fill="#ffffff"/><style>text{font-family:Arial,sans-serif;fill:#233044} .lbl{font-size:20px;font-weight:600}.small{font-size:16px}.accent{fill:#0d9488}.amber{fill:#b45309}</style>
+<text x="44" y="49" font-size="26" font-weight="700">Orthogonal projection onto Col(A)</text>
+<polygon points="110,335 465,335 688,218 333,218" fill="#0d9488" fill-opacity=".13" stroke="#0d9488" stroke-width="2"/>
+<line x1="184" y1="333" x2="457" y2="258" stroke="#0d9488" stroke-width="5" stroke-linecap="round"/>
+<line x1="184" y1="333" x2="457" y2="104" stroke="#64748b" stroke-width="5" stroke-linecap="round"/>
+<line x1="457" y1="104" x2="457" y2="258" stroke="#d97706" stroke-width="4" stroke-dasharray="9 8"/>
+<polyline points="439,263 439,245 457,240" fill="none" stroke="#d97706" stroke-width="2.5"/>
+<circle cx="184" cy="333" r="6" fill="#233044"/><circle cx="457" cy="258" r="7" fill="#0d9488"/><circle cx="457" cy="104" r="7" fill="#64748b"/>
+<text x="161" y="360" class="small">0</text><text x="476" y="101" class="lbl">b</text><text x="481" y="264" class="lbl accent">b̂ = Ax̂</text><text x="475" y="172" class="small amber">r = b − b̂</text><text x="570" y="299" class="lbl accent">Col(A)</text>
+<text x="45" y="403" class="small">The residual r is perpendicular to every column of A: Aᵀr = 0.</text>
+</svg>
