@@ -424,50 +424,7 @@ The **projected output $\hat b$ is unique**, even when several values of $\hat x
   <img src="assets/orthogonal_projection.svg" width="85%" alt="Target b decomposed into its projection onto the column space and its perpendicular residual">
 </p>
 
-### 5.2 Why Is the Residual Perpendicular?
-
-Imagine moving the projected point $\hat b$ along any direction inside $\mathrm{Col}(A)$. At the closest point, no such movement can reduce the distance to $b$.
-
-If $r$ had a component along the subspace, moving $\hat b$ in that direction would shorten the residual. Therefore, at the optimum:
-
-```math
-\boxed{r\perp\mathrm{Col}(A)}
-```
-
-Since the columns $a_1,\ldots,a_n$ span that subspace, perpendicularity to the entire column space is equivalent to:
-
-```math
-a_i^\top r=0\quad\text{for every }i
-\qquad\Longleftrightarrow\qquad
-\boxed{A^\top r=0}
-```
-
-Substituting $r=b-A\hat x$:
-
-```math
-A^\top(b-A\hat x)=0
-\quad\Longleftrightarrow\quad
-A^\top A\hat x=A^\top b
-```
-
-These are the **normal equations** derived in Section 6. Geometrically, they express the perpendicularity of the residual; algebraically, they characterize least-squares solutions.
-
-### 5.3 Why the Projection Minimizes Distance
-
-For any other point $v\in\mathrm{Col}(A)$, the difference $\hat b-v$ also belongs to the column space and is perpendicular to $r$. By the Pythagorean theorem:
-
-```math
-\|b-v\|_2^2
-=
-\|r\|_2^2+\|\hat b-v\|_2^2
-\geq\|r\|_2^2
-```
-
-Equality occurs only when $v=\hat b$. Thus $\hat b$ is the unique closest point to $b$ in the subspace.
-
-**ML interpretation:** A regression model can only output vectors in $\mathrm{Col}(X)$. Orthogonal projection finds the prediction vector with the smallest squared error, and the leftover error is perpendicular to every feature column.
-
-### 5.4 Worked Example: Projection Onto a Line
+### 5.2 Worked Example: Projection Onto a Line
 
 Consider:
 
