@@ -111,11 +111,13 @@ The column space describes possible **outputs**:
 \mathrm{Col}(A)=\{Ax:x\in\mathbb{R}^{n}\}
 ```
 
-The **null space** describes input directions that disappear under the transformation:
+The **null space** of a matrix $A$ is the set of all vectors mapped to the zero vector by $A$:
 
 ```math
 \mathrm{Null}(A)=\{x\in\mathbb{R}^n:Ax=0\}
 ```
+
+It is **trivial** when it contains only the zero vector $\{0\}$, and **non-trivial** when it contains at least one non-zero vector. Non-trivial null-space directions can be added to an input without changing its output.
 
 For example:
 
@@ -153,14 +155,22 @@ For $A\in\mathbb{R}^{m\times n}$:
 \boxed{\mathrm{rank}(A)+\dim(\mathrm{Null}(A))=n}
 ```
 
-If $x_0$ solves $Ax=b$, all solutions have the form:
+The null space determines whether a solution of $Ax=b$ is unique. If $x_p$ is one particular solution, every solution is of the form:
 
 ```math
-x=x_0+z,
-\qquad z\in\mathrm{Null}(A)
+x=x_p+v,
+\qquad v\in\mathrm{Null}(A)
 ```
 
-Therefore, a **trivial null space** implies at most one solution, while a nontrivial null space gives infinitely many solutions whenever the system is consistent.
+Indeed, since $Av=0$:
+
+```math
+A(x_p+v)=Ax_p+Av=b+0=b
+```
+
+Conversely, any two solutions $x_1,x_2$ satisfy $A(x_1-x_2)=0$, so their difference belongs to $\mathrm{Null}(A)$.
+
+Therefore, **provided the system has at least one solution**, a trivial null space gives a unique solution, while a non-trivial null space gives infinitely many solutions.
 
 - **Overdetermined:** $m>n$ (more equations than unknowns); an exact solution may not exist.
 - **Underdetermined:** $m<n$ (more unknowns than equations); any consistent system has infinitely many solutions.
