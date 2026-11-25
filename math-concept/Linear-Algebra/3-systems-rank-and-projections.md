@@ -387,9 +387,89 @@ Therefore, **provided the system has at least one solution**, a trivial null spa
 
 ## 5. Orthogonal Projections
 
-**Context:** Exact reconstruction is not always possible. When a target lies outside the column space, we instead look for the reachable point with the smallest Euclidean distance to it. The shortest residual is perpendicular to the subspace.
+**Context:** A linear transformation $A$ can only produce outputs inside its column space $\mathrm{Col}(A)$. If the target $b$ is outside that subspace, no input $x$ satisfies $Ax=b$ exactly. An **orthogonal projection** finds the reachable output closest to $b$ in Euclidean distance.
 
-### Worked Example: Projection Onto a Line
+### 5.1 Geometric Interpretation
+
+We want to decompose the target into two components:
+
+```math
+b=\hat b+r
+```
+
+where:
+
+- $\hat b\in\mathrm{Col}(A)$ is the **projection**, the part of $b$ that the transformation can represent.
+- $r=b-\hat b$ is the **residual**, the part that cannot be represented by the column space.
+
+The projection is the closest vector in $\mathrm{Col}(A)$:
+
+```math
+\boxed{
+\hat b=\underset{v\in\mathrm{Col}(A)}{\arg\min}\,\|b-v\|_2^2
+}
+```
+
+Since every vector in the column space has the form $Ax$, we can equivalently write:
+
+```math
+\hat b=A\hat x,
+\qquad
+\hat x\in\underset{x}{\arg\min}\,\|Ax-b\|_2^2
+```
+
+The **projected output $\hat b$ is unique**, even when several values of $\hat x$ produce that same output.
+
+<p align="center">
+  <img src="assets/orthogonal_projection.svg" width="85%" alt="Target b decomposed into its projection onto the column space and its perpendicular residual">
+</p>
+
+### 5.2 Why Is the Residual Perpendicular?
+
+Imagine moving the projected point $\hat b$ along any direction inside $\mathrm{Col}(A)$. At the closest point, no such movement can reduce the distance to $b$.
+
+If $r$ had a component along the subspace, moving $\hat b$ in that direction would shorten the residual. Therefore, at the optimum:
+
+```math
+\boxed{r\perp\mathrm{Col}(A)}
+```
+
+Since the columns $a_1,\ldots,a_n$ span that subspace, perpendicularity to the entire column space is equivalent to:
+
+```math
+a_i^\top r=0\quad\text{for every }i
+\qquad\Longleftrightarrow\qquad
+\boxed{A^\top r=0}
+```
+
+Substituting $r=b-A\hat x$:
+
+```math
+A^\top(b-A\hat x)=0
+\quad\Longleftrightarrow\quad
+A^\top A\hat x=A^\top b
+```
+
+These are the **normal equations** derived in Section 6. Geometrically, they express the perpendicularity of the residual; algebraically, they characterize least-squares solutions.
+
+### 5.3 Why the Projection Minimizes Distance
+
+For any other point $v\in\mathrm{Col}(A)$, the difference $\hat b-v$ also belongs to the column space and is perpendicular to $r$. By the Pythagorean theorem:
+
+```math
+\|b-v\|_2^2
+=
+\|r\|_2^2+\|\hat b-v\|_2^2
+\geq\|r\|_2^2
+```
+
+Equality occurs only when $v=\hat b$. Thus $\hat b$ is the unique closest point to $b$ in the subspace.
+
+**ML interpretation:** A regression model can only output vectors in $\mathrm{Col}(X)$. Orthogonal projection finds the prediction vector with the smallest squared error, and the leftover error is perpendicular to every feature column.
+
+### 5.4 Worked Example: Projection Onto a Line
+
+Consider:
 
 ```math
 A=\begin{bmatrix}1\\1\end{bmatrix},
@@ -397,23 +477,35 @@ A=\begin{bmatrix}1\\1\end{bmatrix},
 b=\begin{bmatrix}3\\1\end{bmatrix}
 ```
 
+The column space is the line $\mathrm{span}((1,1)^\top)$. Every reachable output has the form:
+
 ```math
-Ax=\begin{bmatrix}x\\x\end{bmatrix},
-\qquad
+Ax=\begin{bmatrix}x\\x\end{bmatrix}
+```
+
+To find the closest point, minimize:
+
+```math
 J(x)=\|Ax-b\|_2^2=(x-3)^2+(x-1)^2
 ```
 
+Differentiating gives:
+
 ```math
-J'(x)=2(x-3)+2(x-1)=4x-8=0
+J'(x)=2(x-3)+2(x-1)=4x-8
 \quad\Longrightarrow\quad
 \hat x=2
 ```
+
+Therefore, the projection and residual are:
 
 ```math
 \hat b=A\hat x=\begin{bmatrix}2\\2\end{bmatrix},
 \qquad
 r=b-\hat b=\begin{bmatrix}1\\-1\end{bmatrix}
 ```
+
+Finally, verify orthogonality:
 
 ```math
 A^\top r=
@@ -422,34 +514,7 @@ A^\top r=
 =0
 ```
 
-
-If $b\notin\mathrm{Col}(A)$, there is no exact solution to $Ax=b$. Instead, we find the closest vector in the column space:
-
-```math
-\hat b=A\hat x,
-\qquad
-\hat x=\arg\min_x\|Ax-b\|_2^2
-```
-
-The residual is:
-
-```math
-r=b-\hat b
-```
-
-At the orthogonal projection, it is perpendicular to the entire column space:
-
-```math
-r\perp\mathrm{Col}(A)
-\qquad\Longleftrightarrow\qquad
-A^\top r=0
-```
-
-<p align="center">
-  <img src="assets/orthogonal_projection.svg" width="85%" alt="Target vector, orthogonal projection onto the column space, and perpendicular residual">
-</p>
-
-**Illustration:** A regression model chooses the closest prediction vector to the targets among all predictions representable by its feature columns.
+The closest point on the line is $(2,2)$, and the remaining error $(1,-1)$ is perpendicular to that line.
 
 ---
 
