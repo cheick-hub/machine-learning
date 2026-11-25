@@ -13,6 +13,19 @@
 
 ## 1. Systems of Linear Equations
 
+**Context:** A linear system represents several constraints on the same unknown variables. Expressing the equations as $Ax=b$ makes it possible to study existence and uniqueness using matrix geometry.
+
+**Example:** The system $2x_1+x_2=5$ and $x_1+3x_2=7$ has the matrix form
+
+```math
+\begin{bmatrix}2&1\\1&3\end{bmatrix}
+\begin{bmatrix}x_1\\x_2\end{bmatrix}
+=
+\begin{bmatrix}5\\7\end{bmatrix}
+```
+
+Its unique solution is $x_1=8/5$ and $x_2=9/5$. Geometrically, the two equations describe lines meeting at that point.
+
 A linear system can be written as:
 
 ```math
@@ -54,6 +67,10 @@ A system can have a unique solution, infinitely many solutions, or no solution.
 
 ## 2. Matrix Rank
 
+**Context:** Rank measures the number of independent directions that a matrix transformation can produce. Having many columns does not necessarily imply having many distinct directions.
+
+**Example:** In the matrix below, $a_2=2a_1$. Every output can be written as $(x_1+2x_2)a_1$, meaning the column space is only one-dimensional, even though the matrix has two columns.
+
 The **rank** is the number of linearly independent columns (also equal to the number of independent rows):
 
 ```math
@@ -83,6 +100,10 @@ The second column is twice the first, so it adds no independent direction.
 ---
 
 ## 3. Column Space and Null Space
+
+**Context:** These two spaces describe different aspects of a transformation: the column space consists of reachable **outputs** in $\mathbb{R}^m$, while the null space consists of **inputs** in $\mathbb{R}^n$ that are sent to zero.
+
+**Example:** For the matrix below, $Ax=0$ reduces to $x_1+2x_2=0$. Every solution is $x=t(-2,1)^\top$. Meanwhile, the output $Ax=(x_1+2x_2)(1,2)^\top$ always lies on the line spanned by $(1,2)^\top$.
 
 The column space describes possible **outputs**:
 
@@ -122,6 +143,10 @@ A=
 
 ## 4. Rank-Nullity and Solution Uniqueness
 
+**Context:** Rank-nullity divides input dimensions into independent directions preserved by a transformation and directions lost to its null space. This explains why some systems have multiple parameter solutions.
+
+**Example:** A $3\times2$ matrix with rank $1$ has nullity $2-1=1$. If it is consistent, any solution can be shifted along one independent null-space direction without changing the output. In an underdetermined system ($m<n$), the null space is necessarily nontrivial.
+
 For $A\in\mathbb{R}^{m\times n}$:
 
 ```math
@@ -145,6 +170,10 @@ Therefore, a **trivial null space** implies at most one solution, while a nontri
 ---
 
 ## 5. Orthogonal Projections
+
+**Context:** Exact reconstruction is not always possible. When a target lies outside the column space, we instead look for the reachable point with the smallest Euclidean distance to it. The shortest residual is perpendicular to the subspace.
+
+**Example:** Project $b=(3,2)^\top$ onto the horizontal axis, represented by $A=(1,0)^\top$. The closest output is $\hat b=(3,0)^\top$ and the residual is $r=(0,2)^\top$. It is perpendicular to the column: $A^\top r=0$.
 
 If $b\notin\mathrm{Col}(A)$, there is no exact solution to $Ax=b$. Instead, we find the closest vector in the column space:
 
@@ -178,6 +207,20 @@ A^\top r=0
 
 ## 6. Least Squares and Normal Equations
 
+**Context:** Least squares translates the geometric projection problem into minimization of squared residuals. Setting the gradient of this quadratic objective to zero yields the normal equations, which are exactly the perpendicular-residual condition.
+
+**Example:** To fit one constant value to observations $b=(1,2,4)^\top$, choose $A=(1,1,1)^\top$. Then
+
+```math
+A^\top A\hat x=A^\top b
+\quad\Longrightarrow\quad
+3\hat x=7
+\quad\Longrightarrow\quad
+\hat x=\frac73
+```
+
+Thus least squares returns the mean of the three observations, and the residuals sum to zero.
+
 The **least-squares objective** is:
 
 ```math
@@ -209,11 +252,15 @@ If $A$ has full column rank, the solution is unique:
 
 For rank-deficient matrices, minimizers still exist but may not be unique. In practice, numerical solvers using **QR decomposition or SVD** are preferred over forming the inverse explicitly.
 
-**Illustration:** The normal equations are the algebraic form of the geometric condition $A^	op r=0$.
+**Illustration:** The normal equations are the algebraic form of the geometric condition $A^\top r=0$.
 
 ---
 
 ## 7. Connection to Linear Regression
+
+**Context:** A linear regression model cannot predict every arbitrary vector: all its fitted values lie in the column space of $X$. Training finds the closest point in that space to the target vector $y$.
+
+**Example:** With an intercept-only model, $X=(1,1,1)^\top$ and $y=(1,2,4)^\top$, all predictions must be constant. Least squares chooses $\hat y=(7/3,7/3,7/3)^\top$. If two feature columns are identical, the fitted predictions are still unique, but their individual coefficients need not be.
 
 For a dataset $X\in\mathbb{R}^{N\times d}$ and targets $y\in\mathbb{R}^N$, ordinary least squares solves:
 
@@ -234,6 +281,10 @@ If the columns of $X$ are linearly dependent, the coefficient vector may not be 
 ---
 
 ## 8. Conceptual Hierarchy
+
+**Context:** The main progression is from **exact solvability** to **best approximation**. Rank and the null space describe the available directions and solution uniqueness; projection and least squares handle inconsistent systems.
+
+**Example:** For a target vector outside $\mathrm{Col}(A)$, no exact coefficient vector exists. The normal equations instead identify a coefficient vector whose predictions equal the orthogonal projection of the target.
 
 ```text
 Linear system: Ax = b
