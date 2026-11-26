@@ -103,6 +103,8 @@ The second column is twice the first, so it adds no independent direction.
 
 **Context:** These two spaces describe different aspects of a transformation: the column space consists of reachable **outputs** in $\mathbb{R}^m$, while the null space consists of **inputs** in $\mathbb{R}^n$ that are sent to zero.
 
+**Terminology:** The **null space** is also called the **kernel** of a matrix (or linear transformation): $\mathrm{Null}(A)=\ker(A)=\{x:Ax=0\}$.
+
 ### 3.1 Computing the Null Space
 
 Consider:
